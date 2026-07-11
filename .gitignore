@@ -1,0 +1,15 @@
+# OS / tooling
+.DS_Store
+.claude/
+.playwright-mcp/
+node_modules/
+
+# Working screenshots (scratch, root-level only)
+/*.jpeg
+/*.jpg
+/*.png
+
+# Confidential working docs — keep LOCAL only, never in the repo
+# (real client/bank names, visa & salary notes)
+CONTENT-TRUTH.md
+reference/
