@@ -1,0 +1,32 @@
+/* ═══ FONTS (self-hosted) ═══════════════════════════════════════════════════ */
+@font-face{font-family:'Geist';src:url('../assets/fonts/geist/Geist-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'Geist Mono';src:url('../assets/fonts/geist/GeistMono-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'Sora';src:url('../assets/fonts/sora/sora-700.woff2') format('woff2');font-weight:700;font-display:swap}
+
+/* ═══ TOKENS (warm-dark default) ════════════════════════════════════════════ */
+:root{
+  --font-sans:'Geist',-apple-system,'system-ui','Helvetica Neue',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;
+
+  --bg:oklch(0.155 0.012 70); --bg-elevated:oklch(0.19 0.013 70);
+  --surface:oklch(0.22 0.013 70); --surface-2:oklch(0.26 0.014 70);
+  --border:oklch(0.30 0.015 70); --border-strong:oklch(0.42 0.018 72);
+  --ink:oklch(0.96 0.015 90); --ink-2:oklch(0.82 0.014 85);
+  --ink-3:oklch(0.66 0.013 80); --ink-muted:oklch(0.52 0.012 75);
+  --accent:oklch(0.86 0.19 95); --accent-ink:oklch(0.18 0.04 90);
+  --tomato:oklch(0.70 0.20 32); --orange:oklch(0.76 0.17 62);
+  --sage:oklch(0.72 0.13 150); --violet:oklch(0.66 0.19 290); --cobalt:oklch(0.70 0.15 245);
+
+  --max:1200px; --narrow:760px; --pad:clamp(24px,5vw,64px);
+  --r-sm:8px; --r-md:14px; --r-lg:20px; --r-xl:28px; --r-pill:999px;
+  --nav-h:76px;
+  --ease-wipe:cubic-bezier(.76,0,.24,1);
+}
+:root[data-theme="light"]{
+  --bg:oklch(0.965 0.018 90); --bg-elevated:oklch(0.985 0.012 90);
+  --surface:oklch(0.93 0.025 88); --surface-2:oklch(0.90 0.03 86);
+  --border:oklch(0.84 0.035 82); --border-strong:oklch(0.72 0.04 78);
+  --ink:oklch(0.18 0.012 60); --ink-2:oklch(0.34 0.012 60);
+  --ink-3:oklch(0.52 0.014 65); --ink-muted:oklch(0.60 0.014 70);
+  --accent:oklch(0.88 0.18 95); --accent-ink:oklch(0.22 0.05 90);
+}
