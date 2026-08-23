@@ -45,20 +45,55 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 #preloader-count::after{content:"";display:inline-block;width:.14em;height:.14em;border-radius:50%;background:var(--accent);margin-left:.12em;vertical-align:baseline}
 
 /* ═══ NAV ══════════════════════════════════════════════════════════════════ */
-.nav{position:fixed;top:0;left:0;width:100%;height:var(--nav-h);z-index:200;display:flex;align-items:center;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
-.nav.solid{background:color-mix(in oklch,var(--bg) 82%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--border)}
+.nav{position:fixed;top:0;left:0;width:100%;height:var(--nav-h);z-index:200;display:flex;align-items:center;border-bottom:1px solid transparent;transition:background .3s,border-color .3s,box-shadow .3s}
+
+/* ── HERO STATE — vertical scrim, 100% at the top edge, 0 at the bottom edge.
+   The falloff is eased rather than linear: it holds through the band the nav
+   elements actually occupy, then drops away fast in the lower third. A linear
+   ramp sits at 50% right where the text is (unreadable) and bands visibly;
+   the eased curve reads as the same "solid → nothing" fade but keeps the
+   labels on the meaty part of the gradient. Height is exactly --nav-h. */
+.nav::before{content:"";position:absolute;inset:0;height:var(--nav-h);pointer-events:none;transition:opacity .3s;
+  background:linear-gradient(180deg,
+    color-mix(in oklch,var(--bg) 100%,transparent) 0%,
+    color-mix(in oklch,var(--bg) 98%,transparent) 30%,
+    color-mix(in oklch,var(--bg) 94%,transparent) 50%,
+    color-mix(in oklch,var(--bg) 84%,transparent) 62%,
+    color-mix(in oklch,var(--bg) 66%,transparent) 72%,
+    color-mix(in oklch,var(--bg) 44%,transparent) 82%,
+    color-mix(in oklch,var(--bg) 22%,transparent) 91%,
+    transparent 100%)}
+
+/* the blur fades out on the same curve, so the scrim dissolves completely
+   instead of ending on a hard blur seam */
+.nav::after{content:"";position:absolute;inset:0;height:var(--nav-h);pointer-events:none;transition:opacity .3s;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.5) 78%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.5) 78%,transparent 100%)}
+
+/* ── SCROLLED STATE — glass. Heavy blur + saturation lift, a hairline top
+   highlight and a soft drop shadow so it sits above the page rather than
+   painted onto it. */
+.nav.solid{background:color-mix(in oklch,var(--bg) 72%,transparent);
+  backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);
+  border-bottom-color:color-mix(in oklch,var(--border) 70%,transparent);
+  box-shadow:inset 0 1px 0 oklch(1 0 0/.06),0 8px 28px -14px oklch(0 0 0/.55)}
+.nav.solid::before,.nav.solid::after{opacity:0}
+
+.nav-inner{position:relative;z-index:1}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
 .brand{display:flex;align-items:center;font-weight:600;font-size:1.25rem;letter-spacing:-.01em}
 .nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-size:.9rem;color:var(--ink-3);transition:color .2s;position:relative}
+.nav-links a{font-size:.9rem;color:var(--ink-2);transition:color .2s;position:relative;
+  text-shadow:0 1px 2px color-mix(in oklch,var(--bg) 55%,transparent)}
 .nav-links a:hover,.nav-links a.active{color:var(--ink)}
 .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent);border-radius:2px}
 .nav-right{display:flex;align-items:center;gap:14px}
 .status{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);border:1px solid color-mix(in oklch,var(--sage) 40%,transparent);background:color-mix(in oklch,var(--sage) 12%,transparent);border-radius:var(--r-pill);padding:7px 14px;display:flex;align-items:center;gap:8px}
 .status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--sage);box-shadow:0 0 8px var(--sage)}
-.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--ink-2);display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s,transform .1s}
+.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:color-mix(in oklch,var(--bg) 45%,transparent);color:var(--ink-2);display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s,transform .1s}
 .theme-btn:hover{border-color:var(--border-strong);color:var(--ink)}
-.mobile-trigger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;border:1px solid var(--border);border-radius:10px;background:transparent;align-items:center;justify-content:center}
+.mobile-trigger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;border:1px solid var(--border-strong);border-radius:10px;background:color-mix(in oklch,var(--bg) 45%,transparent);align-items:center;justify-content:center}
 .mobile-trigger span{width:18px;height:1.5px;background:var(--ink-2);transition:transform .3s,opacity .2s}
 .mobile-trigger.is-open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .mobile-trigger.is-open span:nth-child(2){opacity:0}
