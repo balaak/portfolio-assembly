@@ -140,6 +140,58 @@ export function bootCursor() {
   document.addEventListener('mouseup', () => ring.classList.remove('down'));
 }
 
+// ── name letter-roll on hover (once, global) ─────────────────────────────────
+// Splits every .brand-name on the page — the nav wordmark and the footer
+// signature — so both carry the same moment.
+//
+// Each letter sits in a 1em window over a stack of five identical glyphs, resting
+// on the middle one. Hovering travels two glyph-heights — odd letters up, even
+// letters down, so neighbours always counter-rotate — and un-hovering travels back
+// the way it came. Every stop is the same glyph, so the name only ever appears to
+// scroll through itself.
+//
+// Timing is lifted off the Framer original (57fps capture, six hover cycles,
+// letter-by-letter vertical tracking): the settle is a first-order exponential
+// with tau = 108ms, and each letter carries its own fixed head-start delay.
+// ROLL_DELAYS are those measured values, in letter order, for "Bala Kumaran".
+const ROLL_COPIES = 5;
+const ROLL_REST = 2;                                     // index of the resting glyph
+const ROLL_DELAYS = [1, 3, 25, 0, 105, 105, 10, 3, 3, 12, 124];
+
+export function bootBrandRoll() {
+  if (reduce || !finePointer) return;
+  document.querySelectorAll('.brand-name').forEach(splitName);
+}
+
+function splitName(name) {
+  const text = name.textContent;
+  name.textContent = '';
+  name.setAttribute('aria-label', text);
+
+  let letter = 0;
+  [...text].forEach((ch) => {
+    if (ch === ' ') { name.appendChild(document.createTextNode(' ')); return; }
+    const mask = document.createElement('span');
+    mask.className = 'roll';
+    mask.setAttribute('aria-hidden', 'true');
+    const inner = document.createElement('span');
+    inner.className = 'roll-i';
+    for (let i = 0; i < ROLL_COPIES; i++) {
+      const glyph = document.createElement('span');
+      glyph.textContent = ch;
+      inner.appendChild(glyph);
+    }
+    // even letters roll up, odd letters roll down — the two land on the glyph two
+    // rows either side of the resting one
+    const up = letter % 2 === 0;
+    inner.style.setProperty('--to', (up ? -(ROLL_REST + 2) : -(ROLL_REST - 2)) + 'em');
+    inner.style.transitionDelay = ROLL_DELAYS[letter % ROLL_DELAYS.length] + 'ms';
+    letter += 1;
+    mask.appendChild(inner);
+    name.appendChild(mask);
+  });
+}
+
 // ── top scroll-progress hairline (once, global) ──────────────────────────────
 export function bootScrollProgress() {
   const bar = document.getElementById('progress');
