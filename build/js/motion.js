@@ -140,7 +140,10 @@ export function bootCursor() {
   document.addEventListener('mouseup', () => ring.classList.remove('down'));
 }
 
-// ── brand letter-roll on hover (once, global) ────────────────────────────────
+// ── name letter-roll on hover (once, global) ─────────────────────────────────
+// Splits every .brand-name on the page — the nav wordmark and the footer
+// signature — so both carry the same moment.
+//
 // Each letter sits in a 1em window over a stack of five identical glyphs, resting
 // on the middle one. Hovering travels two glyph-heights — odd letters up, even
 // letters down, so neighbours always counter-rotate — and un-hovering travels back
@@ -156,8 +159,11 @@ const ROLL_REST = 2;                                     // index of the resting
 const ROLL_DELAYS = [1, 3, 25, 0, 105, 105, 10, 3, 3, 12, 124];
 
 export function bootBrandRoll() {
-  const name = document.querySelector('.brand-name');
-  if (!name || reduce || !finePointer) return;
+  if (reduce || !finePointer) return;
+  document.querySelectorAll('.brand-name').forEach(splitName);
+}
+
+function splitName(name) {
   const text = name.textContent;
   name.textContent = '';
   name.setAttribute('aria-label', text);
