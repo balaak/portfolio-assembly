@@ -17,6 +17,19 @@
   --tomato:oklch(0.70 0.20 32); --orange:oklch(0.76 0.17 62);
   --sage:oklch(0.72 0.13 150); --violet:oklch(0.66 0.19 290); --cobalt:oklch(0.70 0.15 245);
 
+  /* ── HERO ISLAND ─────────────────────────────────────────────────────────
+     The hero is a full-bleed dark photograph in BOTH themes, so everything
+     that sits on it is pinned to a fixed dark palette and never inverts.
+     A cream band over a black portrait reads as a bug, not a theme. */
+  --hero-bg:oklch(0.155 0.012 70);
+  --hero-ink:oklch(0.96 0.015 90); --hero-ink-2:oklch(0.84 0.014 85);
+  --hero-ink-3:oklch(0.70 0.013 80);
+  --hero-chip-ink:oklch(0.87 0.14 152); --hero-chip-dot:oklch(0.82 0.17 150);
+  /* the pill only follows the theme once the nav is theme-coloured glass;
+     over the hero it stays on the dark values above, in both themes. */
+  --chip-ink:var(--hero-chip-ink); --chip-dot:var(--hero-chip-dot);
+  --chip-tint:17%; --chip-base:color-mix(in oklch,var(--hero-bg) 96%,transparent);
+
   --max:1200px; --narrow:760px; --pad:clamp(24px,5vw,64px);
   --r-sm:8px; --r-md:14px; --r-lg:20px; --r-xl:28px; --r-pill:999px;
   --nav-h:76px;
@@ -32,4 +45,6 @@
   --ink:oklch(0.18 0.012 60); --ink-2:oklch(0.34 0.012 60);
   --ink-3:oklch(0.52 0.014 65); --ink-muted:oklch(0.60 0.014 70);
   --accent:oklch(0.88 0.18 95); --accent-ink:oklch(0.22 0.05 90);
+  --chip-ink:oklch(0.38 0.12 150); --chip-dot:oklch(0.55 0.16 150);
+  --chip-tint:24%; --chip-base:color-mix(in oklch,var(--bg) 92%,transparent);
 }
