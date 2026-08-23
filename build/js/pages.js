@@ -223,7 +223,8 @@ export function renderCase(slug) {
           <div class="container-narrow">
             ${s.eyebrow ? `<p class="eyebrow reveal">${esc(s.eyebrow)}</p>` : ''}
             ${s.title ? `<h2 class="case-sec-title reveal">${esc(s.title)}</h2>` : ''}
-            <div class="prose reveal">${(s.body || []).map((t) => `<p>${esc(t)}</p>`).join('')}</div>
+            <div class="prose reveal">${(s.body || []).map((t, i) =>
+              `<p>${esc(t)}</p>` + (s.inlineMedia && s.inlineMedia.after === i ? mediaEl(s.inlineMedia) : '')).join('')}</div>
             ${listEl(s.list)}
           </div>
           ${s.media ? `<div class="container-narrow">${mediaEl(s.media)}</div>` : ''}
