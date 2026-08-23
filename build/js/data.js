@@ -161,6 +161,7 @@ export const PROJECTS = [
           'Right before you confirm, the screen offers a choice: pay in your own currency and see the exact number now, or pay in the merchant’s and let your bank convert it later. That’s the choice Dynamic Currency Conversion gives the cardholder.',
           'It looks like a small screen, but it’s an easy one to get wrong: the rate is set by the payment network, not the cardholder’s own bank, so it isn’t always the better deal. That’s the edge case I designed around — making sure the screen never nudged the choice either way.',
         ],
+        inlineMedia: { after: 0, src: 'media/pg-sdk/dcc-reel.mp4', type: 'video' },
         media: { src: 'media/pg-sdk/dcc-hero.mp4', type: 'video', portrait: true },
         list: [
           ['No steering', 'No pre-selection, no default'],
