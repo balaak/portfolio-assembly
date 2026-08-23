@@ -30,7 +30,7 @@ export function layers({ position = 'top', strength = 2, divCount = 6, curve = '
   return out;
 }
 
-const cfg = { position: 'top', strength: 2, divCount: 6, curve: 'bezier' };
+const cfg = { position: 'bottom', strength: 2, divCount: 4, curve: 'bezier' };
 for (const l of layers(cfg)) {
   console.log(`.gblur > :nth-child(${l.i}){--m:${l.mask};--b:${l.blur}rem}`);
 }
