@@ -1,0 +1,56 @@
+/* ═══ GRADUAL BLUR ═════════════════════════════════════════════════════════
+   Vanilla port of the react-bits <GradualBlur> layer math (MIT).
+   A stack of absolutely-positioned layers, each with a stronger backdrop
+   blur and a mask window that slides along the axis — so blur ramps up
+   smoothly instead of stepping at a hard edge.
+
+   Config: position bottom · divCount 4 · strength 2 · curve bezier
+   Regenerate with scripts/gen-gradual-blur.mjs if these are re-tuned.
+   ────────────────────────────────────────────────────────────────────── */
+
+.gblur{
+  position:fixed; left:0; right:0; bottom:0;
+  height:var(--gblur-h,6rem);
+  z-index:199;                 /* over content, under nav (200) + drawer (250) */
+  pointer-events:none;
+}
+.gblur > i{
+  position:absolute; inset:0;
+  display:block;
+  backdrop-filter:blur(var(--b));
+  -webkit-backdrop-filter:blur(var(--b));
+  -webkit-mask-image:var(--m);
+  mask-image:var(--m);
+  opacity:var(--gblur-o,1);
+}
+
+.gblur > :nth-child(1){--m:linear-gradient(to bottom, transparent 0%, black 25%, black 50%, transparent 75%);--b:0.203rem}
+.gblur > :nth-child(2){--m:linear-gradient(to bottom, transparent 25%, black 50%, black 75%, transparent 100%);--b:0.375rem}
+.gblur > :nth-child(3){--m:linear-gradient(to bottom, transparent 50%, black 75%, black 100%);--b:0.547rem}
+.gblur > :nth-child(4){--m:linear-gradient(to bottom, transparent 75%, black 100%);--b:0.625rem}
+
+/* A tint that fades in with the blur, so content settles into the page
+   edge rather than just going soft. */
+.gblur::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to bottom,
+    transparent 0%,
+    color-mix(in oklch,var(--bg) 45%,transparent) 60%,
+    color-mix(in oklch,var(--bg) 78%,transparent) 100%);
+}
+
+/* No backdrop-filter support → drop the strip entirely. */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .gblur{display:none}
+}
+
+/* Escape hatch for side-by-side comparison: body.no-gblur */
+body.no-gblur .gblur{display:none}
+
+/* The strip is fixed to the viewport, so at max scroll it would sit on top
+   of the footer baseline and fog it out. Clear it by the strip's height. */
+footer{padding-bottom:calc(40px + var(--gblur-h,6rem))}
+body.no-gblur footer{padding-bottom:40px}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  footer{padding-bottom:40px}
+}
