@@ -56,20 +56,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .nav::before{content:"";position:absolute;inset:0;height:var(--nav-h);pointer-events:none;transition:opacity .3s;
   background:linear-gradient(180deg,
     color-mix(in oklch,var(--bg) 100%,transparent) 0%,
-    color-mix(in oklch,var(--bg) 98%,transparent) 30%,
-    color-mix(in oklch,var(--bg) 94%,transparent) 50%,
-    color-mix(in oklch,var(--bg) 84%,transparent) 62%,
-    color-mix(in oklch,var(--bg) 66%,transparent) 72%,
-    color-mix(in oklch,var(--bg) 44%,transparent) 82%,
-    color-mix(in oklch,var(--bg) 22%,transparent) 91%,
+    color-mix(in oklch,var(--bg) 99%,transparent) 55%,
+    color-mix(in oklch,var(--bg) 95%,transparent) 65%,
+    color-mix(in oklch,var(--bg) 80%,transparent) 74%,
+    color-mix(in oklch,var(--bg) 55%,transparent) 83%,
+    color-mix(in oklch,var(--bg) 26%,transparent) 92%,
     transparent 100%)}
 
 /* the blur fades out on the same curve, so the scrim dissolves completely
    instead of ending on a hard blur seam */
 .nav::after{content:"";position:absolute;inset:0;height:var(--nav-h);pointer-events:none;transition:opacity .3s;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.5) 78%,transparent 100%);
-  mask-image:linear-gradient(180deg,#000 0%,#000 55%,rgba(0,0,0,.5) 78%,transparent 100%)}
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 65%,rgba(0,0,0,.5) 84%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 65%,rgba(0,0,0,.5) 84%,transparent 100%)}
 
 /* ── SCROLLED STATE — glass. Heavy blur + saturation lift, a hairline top
    highlight and a soft drop shadow so it sits above the page rather than
@@ -89,9 +88,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .nav-links a:hover,.nav-links a.active{color:var(--ink)}
 .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent);border-radius:2px}
 .nav-right{display:flex;align-items:center;gap:14px}
-.status{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);border:1px solid color-mix(in oklch,var(--sage) 40%,transparent);background:color-mix(in oklch,var(--sage) 12%,transparent);border-radius:var(--r-pill);padding:7px 14px;display:flex;align-items:center;gap:8px}
+.status{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);border:1px solid color-mix(in oklch,var(--sage) 45%,transparent);background:color-mix(in oklch,var(--sage) 14%,var(--bg));border-radius:var(--r-pill);padding:7px 14px;display:flex;align-items:center;gap:8px}
 .status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--sage);box-shadow:0 0 8px var(--sage)}
-.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:color-mix(in oklch,var(--bg) 45%,transparent);color:var(--ink-2);display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s,transform .1s}
+.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:color-mix(in oklch,var(--bg) 86%,transparent);color:var(--ink-2);display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s,transform .1s}
 .theme-btn:hover{border-color:var(--border-strong);color:var(--ink)}
 .mobile-trigger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;border:1px solid var(--border-strong);border-radius:10px;background:color-mix(in oklch,var(--bg) 45%,transparent);align-items:center;justify-content:center}
 .mobile-trigger span{width:18px;height:1.5px;background:var(--ink-2);transition:transform .3s,opacity .2s}
