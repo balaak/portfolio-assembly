@@ -48,9 +48,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .nav{position:fixed;top:0;left:0;width:100%;height:var(--nav-h);z-index:200;display:flex;align-items:center;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
 .nav.solid{background:color-mix(in oklch,var(--bg) 82%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--border)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-.brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:.95rem;letter-spacing:-.01em}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:1.125rem;letter-spacing:-.01em}
 .brand .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(150deg,var(--accent),oklch(0.72 0.16 78));box-shadow:0 0 0 1px oklch(1 0 0/.08) inset}
-.brand .tag{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-muted);letter-spacing:.04em}
 /* brand-name letter roll (hover) — split into per-letter masks by motion.js.
    --ease-roll is the Framer original's settle, measured off the capture: a
    first-order exponential with tau=108ms, sampled as a linear() curve. */
