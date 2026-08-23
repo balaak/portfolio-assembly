@@ -137,9 +137,10 @@ export const PROJECTS = [
         ],
         gallery: [
           { src: 'media/pg-sdk/spectrum-pg-sdk.mp4', type: 'video' },
-          { src: 'media/pg-sdk/customization.mp4', type: 'video' },
-          { src: 'media/pg-sdk/pulsebar.mp4', type: 'video',
+          { src: 'media/pg-sdk/customization.mp4', type: 'video',
             caption: 'The title bar syncs to each merchant’s brand colour automatically — no manual theming per integration.' },
+          { src: 'media/pg-sdk/pulsebar.mp4', type: 'video',
+            caption: 'What the title bar carries is configurable too. SummarySnap was already there; profile login and language selection are new add-ons.' },
           { src: 'media/pg-sdk/variables-mapping.webp', type: 'image' },
           { src: 'media/pg-sdk/billdesk-ui-thumbnail.webp', type: 'image' },
         ],
