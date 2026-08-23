@@ -36,7 +36,11 @@ const nav = document.getElementById('nav');
 // scrim would paint a black band across it. Those routes wear the glass bar
 // from the first pixel instead.
 let routeHasHero = true;
-const onNavScroll = () => { nav.classList.toggle('solid', !routeHasHero || window.scrollY > 40); };
+const onNavScroll = () => {
+  const scrolled = window.scrollY > 40;
+  nav.classList.toggle('solid', !routeHasHero || scrolled);
+  nav.classList.toggle('lifted', scrolled);
+};
 window.addEventListener('scroll', onNavScroll, { passive: true });
 
 function setNavActive(route) {
