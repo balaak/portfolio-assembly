@@ -30,7 +30,17 @@ const scrollTop = () => { lenis ? lenis.scrollTo(0, { immediate: true }) : windo
 
 // ── nav ───────────────────────────────────────────────────────────────────────
 const nav = document.getElementById('nav');
-const onNavScroll = () => { nav.classList.toggle('solid', window.scrollY > 40); };
+// The hero treatment (dark scrim + hero-palette ink) is only legal over the
+// dark ASCII hero, which exists on the home route alone. On every other route
+// the top of the page is the page background -- cream in light mode -- so the
+// scrim would paint a black band across it. Those routes wear the glass bar
+// from the first pixel instead.
+let routeHasHero = true;
+const onNavScroll = () => {
+  const scrolled = window.scrollY > 40;
+  nav.classList.toggle('solid', !routeHasHero || scrolled);
+  nav.classList.toggle('lifted', scrolled);
+};
 window.addEventListener('scroll', onNavScroll, { passive: true });
 
 function setNavActive(route) {
@@ -92,6 +102,7 @@ const ctx = {
 // ── the route swap ────────────────────────────────────────────────────────────
 function swap(page) {
   app.innerHTML = page.html;
+  routeHasHero = !!app.querySelector('.hero');
   scrollTop();
   setNavActive(page.route);
   document.title = page.label === 'Home'

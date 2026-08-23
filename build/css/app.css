@@ -70,14 +70,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 65%,rgba(0,0,0,.5) 84%,transparent 100%);
   mask-image:linear-gradient(180deg,#000 0%,#000 65%,rgba(0,0,0,.5) 84%,transparent 100%)}
 
-/* ── SCROLLED STATE — glass. Heavy blur + saturation lift, a hairline top
-   highlight and a soft drop shadow so it sits above the page rather than
-   painted onto it. */
+/* ── GLASS STATE — heavy blur + saturation lift. No seam and no shadow: at
+   the top of a heroless page the bar sits ON the page, same ground, and any
+   edge there reads as a stray band. */
 .nav.solid{background:color-mix(in oklch,var(--bg) 86%,transparent);
-  backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);
-  border-bottom-color:color-mix(in oklch,var(--border) 70%,transparent);
-  box-shadow:inset 0 1px 0 oklch(1 0 0/.06),0 8px 28px -14px oklch(0 0 0/.55)}
+  backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%)}
 .nav.solid::before,.nav.solid::after{opacity:0}
+
+/* ── LIFTED — only once content is actually running underneath. The hairline
+   top highlight and the drop shadow arrive together, so the bar rises off the
+   page exactly when it has something to sit above. */
+.nav.lifted{border-bottom-color:color-mix(in oklch,var(--border) 70%,transparent);
+  box-shadow:inset 0 1px 0 oklch(1 0 0/.06),0 8px 28px -14px oklch(0 0 0/.55)}
 
 /* ── over the hero, the nav wears the hero palette in BOTH themes ───────── */
 .nav:not(.solid) .brand{color:var(--hero-ink)}
