@@ -45,8 +45,64 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 #preloader-count::after{content:"";display:inline-block;width:.14em;height:.14em;border-radius:50%;background:var(--accent);margin-left:.12em;vertical-align:baseline}
 
 /* ═══ NAV ══════════════════════════════════════════════════════════════════ */
-.nav{position:fixed;top:0;left:0;width:100%;height:var(--nav-h);z-index:200;display:flex;align-items:center;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
-.nav.solid{background:color-mix(in oklch,var(--bg) 82%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--border)}
+.nav{position:fixed;top:0;left:0;width:100%;height:var(--nav-h);z-index:200;display:flex;align-items:center;border-bottom:1px solid transparent;transition:background .3s,border-color .3s,box-shadow .3s}
+
+/* ── HERO STATE — vertical scrim, 100% at the top edge, 0 at the bottom edge.
+   The falloff is eased rather than linear: it holds through the band the nav
+   elements actually occupy, then drops away fast in the lower third. A linear
+   ramp sits at 50% right where the text is (unreadable) and bands visibly;
+   the eased curve reads as the same "solid → nothing" fade but keeps the
+   labels on the meaty part of the gradient. Height is exactly --nav-h. */
+.nav::before{content:"";position:absolute;inset:0;height:var(--nav-h);pointer-events:none;transition:opacity .3s;
+  background:linear-gradient(180deg,
+    color-mix(in oklch,var(--hero-bg) 100%,transparent) 0%,
+    color-mix(in oklch,var(--hero-bg) 99%,transparent) 55%,
+    color-mix(in oklch,var(--hero-bg) 95%,transparent) 65%,
+    color-mix(in oklch,var(--hero-bg) 80%,transparent) 74%,
+    color-mix(in oklch,var(--hero-bg) 55%,transparent) 83%,
+    color-mix(in oklch,var(--hero-bg) 26%,transparent) 92%,
+    transparent 100%)}
+
+/* the blur fades out on the same curve, so the scrim dissolves completely
+   instead of ending on a hard blur seam */
+.nav::after{content:"";position:absolute;inset:0;height:var(--nav-h);pointer-events:none;transition:opacity .3s;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 65%,rgba(0,0,0,.5) 84%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 65%,rgba(0,0,0,.5) 84%,transparent 100%)}
+
+/* ── SCROLLED STATE — glass. Heavy blur + saturation lift, a hairline top
+   highlight and a soft drop shadow so it sits above the page rather than
+   painted onto it. */
+.nav.solid{background:color-mix(in oklch,var(--bg) 86%,transparent);
+  backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);
+  border-bottom-color:color-mix(in oklch,var(--border) 70%,transparent);
+  box-shadow:inset 0 1px 0 oklch(1 0 0/.06),0 8px 28px -14px oklch(0 0 0/.55)}
+.nav.solid::before,.nav.solid::after{opacity:0}
+
+/* ── over the hero, the nav wears the hero palette in BOTH themes ───────── */
+.nav:not(.solid) .brand{color:var(--hero-ink)}
+.nav:not(.solid) .brand .tag{color:var(--hero-ink-3)}
+.nav:not(.solid) .nav-links a{color:var(--hero-ink-2);
+  text-shadow:0 1px 2px color-mix(in oklch,var(--hero-bg) 55%,transparent)}
+.nav:not(.solid) .nav-links a:hover,.nav:not(.solid) .nav-links a.active{color:var(--hero-ink)}
+.nav:not(.solid) .theme-btn,.nav:not(.solid) .mobile-trigger{
+  color:var(--hero-ink-2);border-color:oklch(1 0 0/.22);
+  background:color-mix(in oklch,var(--hero-bg) 40%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav:not(.solid) .theme-btn:hover{color:var(--hero-ink);border-color:oklch(1 0 0/.4)}
+.nav:not(.solid) .mobile-trigger span{background:var(--hero-ink-2)}
+
+/* over the hero the pill ignores the theme and thins its base, so the ASCII
+   moves behind it -- the hero is a dark island in light mode too */
+.nav:not(.solid) .status{color:var(--hero-chip-ink);
+  background:linear-gradient(color-mix(in oklch,var(--sage) 17%,transparent),
+                             color-mix(in oklch,var(--sage) 17%,transparent)),
+             color-mix(in oklch,var(--hero-bg) 72%,transparent)}
+.nav:not(.solid) .status::before{background:var(--hero-chip-dot);
+  box-shadow:0 0 8px color-mix(in oklch,var(--hero-chip-dot) 70%,transparent)}
+
+.nav.solid .nav-links a{color:var(--ink);text-shadow:none}
+.nav-inner{position:relative;z-index:1}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
 /* line-height:1 is load-bearing — .brand-name .roll is an inline-block with
    vertical-align:bottom, so it aligns to the LINE BOX, not to .brand. With an
@@ -55,15 +111,32 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
    makes the two coincide. */
 .brand{display:flex;align-items:center;line-height:1;font-weight:600;font-size:1.25rem;letter-spacing:-.01em}
 .nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-size:.9rem;color:var(--ink-3);transition:color .2s;position:relative}
+.nav-links a{font-size:.9rem;color:var(--ink-2);transition:color .2s;position:relative;
+  text-shadow:0 1px 2px color-mix(in oklch,var(--bg) 55%,transparent)}
 .nav-links a:hover,.nav-links a.active{color:var(--ink)}
 .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent);border-radius:2px}
 .nav-right{display:flex;align-items:center;gap:14px}
-.status{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);border:1px solid color-mix(in oklch,var(--sage) 40%,transparent);background:color-mix(in oklch,var(--sage) 12%,transparent);border-radius:var(--r-pill);padding:7px 14px;display:flex;align-items:center;gap:8px}
-.status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--sage);box-shadow:0 0 8px var(--sage)}
-.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--ink-2);display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s,transform .1s}
+/* ── STATUS CHIP — one green-glass treatment in every state and both themes.
+   Sage tint over a dark base, backdrop-blur, mint text, glowing dot. Only the
+   base opacity changes: see-through over the hero so the art moves behind it,
+   near-opaque once scrolled (invisible in dark mode, and the only thing that
+   keeps it legible over the pale glass in light mode). */
+.status{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--chip-ink);
+  border:1px solid color-mix(in oklch,var(--sage) 48%,transparent);
+  background:linear-gradient(color-mix(in oklch,var(--sage) var(--chip-tint),transparent),
+                             color-mix(in oklch,var(--sage) var(--chip-tint),transparent)),
+             var(--chip-base);
+  backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);
+  box-shadow:inset 0 1px 0 oklch(1 0 0/.07);
+  border-radius:var(--r-pill);padding:7px 14px;display:flex;align-items:center;gap:8px}
+.status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--chip-dot);
+  box-shadow:0 0 8px color-mix(in oklch,var(--chip-dot) 70%,transparent)}
+/* on the pale glass the halo just smears -- drop it, keep the solid dot */
+:root[data-theme="light"] .nav.solid .status::before{box-shadow:none}
+.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:color-mix(in oklch,var(--bg) 86%,transparent);color:var(--ink-2);display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s,transform .1s}
 .theme-btn:hover{border-color:var(--border-strong);color:var(--ink)}
-.mobile-trigger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;border:1px solid var(--border);border-radius:10px;background:transparent;align-items:center;justify-content:center}
+.mobile-trigger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;border:1px solid var(--border-strong);border-radius:10px;background:color-mix(in oklch,var(--bg) 45%,transparent);align-items:center;justify-content:center}
 .mobile-trigger span{width:18px;height:1.5px;background:var(--ink-2);transition:transform .3s,opacity .2s}
 .mobile-trigger.is-open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .mobile-trigger.is-open span:nth-child(2){opacity:0}
@@ -83,10 +156,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .drawer-meta{margin-top:auto;display:flex;flex-direction:column;gap:10px;font-family:var(--font-mono);font-size:.8rem;color:var(--ink-3)}
 
 /* ═══ HERO ═════════════════════════════════════════════════════════════════ */
-.hero{position:relative;min-height:100svh;background:var(--bg);overflow:hidden}
+.hero{position:relative;min-height:100svh;background:var(--hero-bg);overflow:hidden}
 .hero-ascii-bg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,transparent 72%,var(--bg) 100%)}
-.hero-cue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:2;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3);animation:floaty 2.4s ease-in-out infinite}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,transparent 72%,var(--hero-bg) 100%)}
+.hero-cue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:2;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--hero-ink-3);animation:floaty 2.4s ease-in-out infinite}
 @keyframes floaty{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 
 /* ═══ MARQUEE ══════════════════════════════════════════════════════════════ */
