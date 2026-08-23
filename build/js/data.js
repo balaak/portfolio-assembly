@@ -87,21 +87,103 @@ export const PROJECTS = [
   },
   {
     slug: 'payment-gateway-sdk',
-    name: 'Payment Gateway SDK',
+    name: 'BillDesk Payment SDK',
     initial: 'P', color: 'var(--cobalt)',
-    kind: 'Payments · SDK', year: '2021 — 23',
-    role: 'Lead, Payments UX', duration: '2021 — 23', outcome: '1 week → 48h',
-    summary: 'Conceived and led a retry-and-fallback checkout that recovers otherwise-failed payments. Cut merchant integration from a week to 48 hours; now the live checkout in a national rail-ticketing super-app at 30,000+ transactions a minute.',
-    tags: ['Checkout', 'Flutter', 'Conversion'],
+    kind: 'Payments · SDK', year: '2023 — now',
+    role: 'Design lead — conceived, pitched, led', duration: '3 years · 2023 → ongoing',
+    outcome: '30,000+ txns / min',
+    summary: 'A pre-built payment screen merchants embed in their own app and brand as their own. I led the rebuild across five platforms for three years. It now runs at 30,000+ transactions a minute.',
+    tags: ['Checkout', 'Design system', 'Accessibility', '5 platforms'],
+    cover: 'media/pg-sdk/hero-reel.mp4',
     metrics: [
-      { v: '48h', l: 'Integration · was 1 week' },
-      { v: '30K/min', l: 'Live checkout throughput' },
-      { v: 'National', l: 'Rail super-app' },
+      { v: '30,000+', l: 'Txns / min at peak' },
+      { v: '1wk → 48h', l: 'Merchant time-to-integrate' },
+      { v: '3d → 10min', l: 'Brand configuration' },
     ],
-    body: [
-      'Failed payments are lost revenue that never shows up in a funnel. I conceived and led a retry-and-fallback checkout that quietly recovers transactions that would otherwise die at the gateway.',
-      'Beyond conversion, the SDK made adoption cheap: merchant integration dropped from a week to 48 hours. It now runs as the live checkout inside a national rail-ticketing super-app, handling 30,000+ transactions a minute.',
+    sections: [
+      {
+        eyebrow: 'Problem',
+        title: 'Every platform had quietly become a different product.',
+        body: [
+          'A legacy API under years of patches. No native Android, iOS or Flutter SDK at all. mWeb broken. Back buttons in the wrong places. Error screens that sometimes didn’t name the error. And contrast failures caused by the brand colour itself.',
+        ],
+        media: { src: 'media/pg-sdk/problem-audit.mp4', type: 'video' },
+      },
+      {
+        eyebrow: 'The ask',
+        title: 'I pitched a redesign. I was handed a platform.',
+        body: [
+          'I built the concept: customisation, language selection, order summary, card scanning, foreign-card handling. Then I took it to our CEO, and after that to a BillDesk co-founder. He came back wanting all of it, plus native Android and iOS.',
+        ],
+      },
+      {
+        eyebrow: 'Diagnosis',
+        title: 'One product was serving three unrelated people.',
+        body: [
+          'My design team was the manual glue holding it together. Every brand request arrived as a one-off. That isn’t a backlog problem. It’s an architecture problem wearing a backlog costume.',
+        ],
+        list: [
+          ['The payer', 'Has already decided. Needs the payment to survive a dropped connection, a bank timeout, a wrong OTP. → PG SDK'],
+          ['The brand owner', 'Wants the checkout to look like their product, without filing a ticket and waiting three days. → Spectrum'],
+          ['The integrator', 'A merchant’s developer. Must rehearse every failure path before shipping, and can’t, because failures don’t happen on demand. → Playground'],
+        ],
+      },
+      {
+        eyebrow: 'What shipped',
+        title: 'Three surfaces, one design language.',
+        body: [
+          'Every component had to work in the checkout, in Spectrum’s admin views and in Playground’s simulator with no special case. BillDesk UI already existed. I reused it and built the components it was missing, PulseBar and the title bar among them.',
+        ],
+        gallery: [
+          { src: 'media/pg-sdk/spectrum-pg-sdk.mp4', type: 'video' },
+          { src: 'media/pg-sdk/customization.mp4', type: 'video' },
+          { src: 'media/pg-sdk/pulsebar.mp4', type: 'video',
+            caption: 'The title bar syncs to each merchant’s brand colour automatically — no manual theming per integration.' },
+          { src: 'media/pg-sdk/variables-mapping.webp', type: 'image' },
+          { src: 'media/pg-sdk/billdesk-ui-thumbnail.webp', type: 'image' },
+        ],
+      },
+      {
+        eyebrow: 'The decision I’d defend',
+        title: 'I designed the failure path first.',
+        body: [
+          'Most checkout design stops at the success state. I argued for building recovery as a first-class flow: when a payment fails, the SDK retries and falls back rather than dead-ending the payer and handing them back to the merchant.',
+          'A payment that fails once isn’t a lost customer. It’s a customer standing still with their wallet already out.',
+        ],
+        media: { src: 'media/pg-sdk/error-recovery.mp4', type: 'video' },
+      },
+      {
+        eyebrow: 'Dynamic currency conversion',
+        title: 'Pay in your own currency, not the merchant’s.',
+        body: [
+          'Right before you confirm, the screen offers a choice: pay in your own currency and see the exact number now, or pay in the merchant’s and let your bank convert it later. That’s the choice Dynamic Currency Conversion gives the cardholder.',
+          'It looks like a small screen, but it’s an easy one to get wrong: the rate is set by the payment network, not the cardholder’s own bank, so it isn’t always the better deal. That’s the edge case I designed around — making sure the screen never nudged the choice either way.',
+        ],
+        media: { src: 'media/pg-sdk/dcc-hero.mp4', type: 'video', portrait: true },
+        list: [
+          ['No steering', 'No pre-selection, no default'],
+          ['Currency vs currency', 'Never accept / decline'],
+          ['Equal disclosure', 'Same size, colour and font'],
+          ['Decline once', 'And you may not re-prompt'],
+        ],
+      },
+      {
+        eyebrow: 'The proof',
+        title: 'Everything added afterwards, without a rebuild.',
+        body: [
+          'Launching was never the test. The test was what the architecture could absorb over the next two years — dynamic QR, rail ticketing at national scale, NPCI’s interoperable netbanking switch, and e-mandates for recurring debits, each with its own edge cases.',
+        ],
+      },
+      {
+        eyebrow: 'Full circle',
+        title: 'The audit opened on a contrast failure. The regulator closed it.',
+        body: [
+          'The brand colour itself was failing contrast, which is why Spectrum was never a free-form theming tool. Merchants got their brand; they did not get to recreate that failure.',
+          'Then RBI required payment system participants to make their systems accessible, against a standard mandating IS 17802 and WCAG 2.1. One explicit rule: no placeholder text as a form label. The card entry fields were rebuilt.',
+        ],
+      },
     ],
+    caseStudyUrl: 'https://balaak.github.io/billdesk-pg-sdk-case-study/',
   },
   {
     slug: 'ai-color-token-pipeline',
