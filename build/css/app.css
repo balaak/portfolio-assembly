@@ -205,7 +205,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .case-spec{border:1px solid color-mix(in oklch,var(--ink) 12%,transparent);border-radius:var(--r-xl);background:color-mix(in oklch,var(--ink) 5%,transparent);backdrop-filter:blur(16px) saturate(1.35);-webkit-backdrop-filter:blur(16px) saturate(1.35);box-shadow:inset 0 1px 0 color-mix(in oklch,var(--ink) 10%,transparent);padding:16px}
 .case-spec .spec{display:flex;flex-direction:column;gap:0}
 .spec-row{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:12px 0;border-bottom:1px solid color-mix(in oklch,var(--ink) 10%,transparent)}
-.spec-row:last-child{border-bottom:none}
+.spec-row:first-child{padding-top:0}
+.spec-row:last-child{padding-bottom:0;border-bottom:none}
 .spec-row dt{flex:none;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
 .spec-row dd{margin:0;color:var(--ink);font-size:.98rem;line-height:1.35;text-align:right;text-wrap:balance}
 .case-hero{margin-top:48px;aspect-ratio:21/9;border-radius:var(--r-lg);border:1px solid var(--border);position:relative;overflow:hidden;background:linear-gradient(135deg,var(--c) 0%,var(--surface-2) 88%)}
