@@ -122,6 +122,7 @@ function finishPreloader() {
 function boot() {
   motion.bootCursor();
   motion.bootScrollProgress();
+  motion.bootBrandRoll();
   go(); // first render (instant)
 
   const pre = document.getElementById('preloader');

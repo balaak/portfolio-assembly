@@ -140,6 +140,56 @@ export function bootCursor() {
   document.addEventListener('mouseup', () => ring.classList.remove('down'));
 }
 
+// ── brand letter-roll on hover (once, global) ────────────────────────────────
+// Each letter sits in a 1em mask over a stack of identical glyphs. Hovering the
+// brand snaps every stack two glyph-heights up, then eases it back down with a
+// randomised per-letter delay, so the name rolls through itself and lands where
+// it started. Matches the Framer logo interaction.
+const ROLL_COPIES = 3;   // land on an identical glyph two heights below the start
+const ROLL_SPREAD = 130; // ms of randomised per-letter delay
+
+export function bootBrandRoll() {
+  const name = document.querySelector('.brand-name');
+  if (!name || reduce || !finePointer) return;
+  const text = name.textContent;
+  name.textContent = '';
+  name.setAttribute('aria-label', text);
+  [...text].forEach((ch) => {
+    if (ch === ' ') { name.appendChild(document.createTextNode(' ')); return; }
+    const mask = document.createElement('span');
+    mask.className = 'roll';
+    mask.setAttribute('aria-hidden', 'true');
+    const inner = document.createElement('span');
+    inner.className = 'roll-i';
+    for (let i = 0; i < ROLL_COPIES; i++) {
+      const glyph = document.createElement('span');
+      glyph.textContent = ch;
+      inner.appendChild(glyph);
+    }
+    mask.appendChild(inner);
+    name.appendChild(mask);
+  });
+
+  const inners = [...name.querySelectorAll('.roll-i')];
+  const brand = name.closest('.brand') || name;
+  let rolling = false;
+  brand.addEventListener('pointerenter', () => {
+    if (rolling) return;
+    rolling = true;
+    inners.forEach((n) => { n.style.transition = 'none'; n.style.transform = `translate3d(0,-${(ROLL_COPIES - 1) * 100}%,0)`; });
+    void name.offsetWidth; // commit the jump before easing back
+    inners.forEach((n) => {
+      n.style.transition = '';
+      n.style.transitionDelay = Math.round(Math.random() * ROLL_SPREAD) + 'ms';
+      n.style.transform = 'translate3d(0,0,0)';
+    });
+    setTimeout(() => {
+      inners.forEach((n) => { n.style.transitionDelay = ''; });
+      rolling = false;
+    }, 560 + ROLL_SPREAD + 60);
+  });
+}
+
 // ── top scroll-progress hairline (once, global) ──────────────────────────────
 export function bootScrollProgress() {
   const bar = document.getElementById('progress');

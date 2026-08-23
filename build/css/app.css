@@ -51,6 +51,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:.95rem;letter-spacing:-.01em}
 .brand .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(150deg,var(--accent),oklch(0.72 0.16 78));box-shadow:0 0 0 1px oklch(1 0 0/.08) inset}
 .brand .tag{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-muted);letter-spacing:.04em}
+/* brand-name letter roll (hover) — split into per-letter masks by motion.js */
+.brand-name{display:inline-block;white-space:pre;font-kerning:none}
+.brand-name .roll{display:inline-block;overflow:hidden;height:1em;line-height:1;vertical-align:bottom}
+.brand-name .roll-i{display:block;transform:translate3d(0,0,0);transition:transform .56s cubic-bezier(.22,1,.36,1)}
+.brand-name .roll-i>span{display:block;height:1em;line-height:1}
+@media(prefers-reduced-motion:reduce){.brand-name .roll-i{transition:none}}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{font-size:.9rem;color:var(--ink-3);transition:color .2s;position:relative}
 .nav-links a:hover,.nav-links a.active{color:var(--ink)}
