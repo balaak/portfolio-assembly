@@ -204,8 +204,8 @@ export function renderCase(slug) {
     if (!m) return '';
     const cls = `case-media${m.portrait ? ' is-portrait' : ''}`;
     const inner = m.type === 'video'
-      ? `<video src="${esc(m.src)}" muted loop playsinline preload="metadata"
-           autoplay aria-hidden="true"></video>`
+      ? `<video data-src="${esc(m.src)}" muted loop playsinline preload="none"
+           style="aspect-ratio:${esc(m.ratio || '16/9')}" aria-hidden="true"></video>`
       : `<img src="${esc(m.src)}" alt="" loading="lazy" decoding="async" />`;
     const cap = m.caption ? `<p class="media-caption mono">${esc(m.caption)}</p>` : '';
     return `<figure class="${cls} reveal">${inner}${cap}</figure>`;

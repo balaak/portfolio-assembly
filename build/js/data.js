@@ -136,7 +136,7 @@ export const PROJECTS = [
           'Every component had to work in the checkout, in Spectrum’s admin views and in Playground’s simulator with no special case. BillDesk UI already existed. I reused it and built the components it was missing, PulseBar and the title bar among them.',
         ],
         gallery: [
-          { src: 'media/pg-sdk/spectrum-pg-sdk.mp4', type: 'video' },
+          { src: 'media/pg-sdk/spectrum-pg-sdk.mp4', type: 'video', ratio: '1918/1278' },
           { src: 'media/pg-sdk/customization.mp4', type: 'video',
             caption: 'The title bar syncs to each merchant’s brand colour automatically — no manual theming per integration.' },
           { src: 'media/pg-sdk/pulsebar.mp4', type: 'video',
@@ -162,7 +162,7 @@ export const PROJECTS = [
           'It looks like a small screen, but it’s an easy one to get wrong: the rate is set by the payment network, not the cardholder’s own bank, so it isn’t always the better deal. That’s the edge case I designed around — making sure the screen never nudged the choice either way.',
         ],
         inlineMedia: { after: 0, src: 'media/pg-sdk/dcc-reel.mp4', type: 'video' },
-        media: { src: 'media/pg-sdk/dcc-hero.mp4', type: 'video', portrait: true },
+        media: { src: 'media/pg-sdk/dcc-hero.mp4', type: 'video', ratio: '1020/1828', portrait: true },
         list: [
           ['No steering', 'No pre-selection, no default'],
           ['Currency vs currency', 'Never accept / decline'],

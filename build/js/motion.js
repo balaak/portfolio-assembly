@@ -15,6 +15,32 @@ function initReveals(scope) {
   els.forEach((el) => io.observe(el));
 }
 
+// ── lazy media (per route) ───────────────────────────────────────────────────
+// Case pages carry up to nine clips. Fetching them all on mount saturates the
+// browser's concurrent-media cap, so the tail never starts loading. Each video
+// ships as data-src and only fetches once it nears the viewport; clips that
+// scroll well clear of it pause to free a decoder.
+function initLazyMedia(scope) {
+  const vids = scope.querySelectorAll('video[data-src]');
+  if (!vids.length) return;
+  const load = (v) => {
+    if (!v.dataset.src) return;
+    v.src = v.dataset.src;
+    delete v.dataset.src;
+    v.preload = 'auto';
+  };
+  const play = (v) => { if (!reduce) v.play?.().catch(() => {}); };
+  if (!('IntersectionObserver' in window)) { vids.forEach((v) => { load(v); play(v); }); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      const v = e.target;
+      if (e.isIntersecting) { load(v); play(v); }
+      else if (!v.paused) v.pause();
+    });
+  }, { rootMargin: '300px 0px', threshold: 0.01 });
+  vids.forEach((v) => io.observe(v));
+}
+
 // ── stat counters (per route) ────────────────────────────────────────────────
 function initCounters(scope) {
   const pureSuf = (s) => /^[+%]?$/.test(s);
@@ -154,6 +180,7 @@ export function bootScrollProgress() {
 // ── per-route entry point ────────────────────────────────────────────────────
 export function mount(scope) {
   initReveals(scope);
+  initLazyMedia(scope);
   initCounters(scope);
   initMarquee(scope);
   initMagnetic(scope);
