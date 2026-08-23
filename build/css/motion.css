@@ -2,8 +2,14 @@
 #wipe{position:fixed;inset:0;z-index:9000;visibility:hidden;pointer-events:none}
 /* theme-matched curtain: dark surface in dark mode, light surface in light mode */
 #wipe-panel{position:absolute;inset:0;background:var(--bg-elevated);transform:scaleY(0);transform-origin:50% 100%}
-#wipe-label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--font-mono);font-size:.9rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);opacity:0;display:flex;align-items:center;gap:16px}
+/* Centred by flexbox, NOT by translate(-50%,-50%): router.js animates this
+   element's transform (translateY) with fill:forwards, which would replace
+   a translate-based centring and shunt the caption right of centre. */
+#wipe-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;gap:16px;padding:0 20px;font-family:var(--font-mono);font-size:.9rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);opacity:0}
 #wipe-label::before,#wipe-label::after{content:"";width:28px;height:1px;background:color-mix(in oklch,var(--accent) 60%,transparent)}
+/* letter-spacing adds a trailing space after the last glyph; pull the closing
+   rule back by that amount so the two flanking rules are optically equal. */
+#wipe-label::after{margin-left:-.24em}
 
 /* ═══ CUSTOM CURSOR ════════════════════════════════════════════════════════ */
 .cursor{position:fixed;top:0;left:0;pointer-events:none;z-index:9500;display:none}

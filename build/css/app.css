@@ -48,7 +48,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .nav{position:fixed;top:0;left:0;width:100%;height:var(--nav-h);z-index:200;display:flex;align-items:center;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
 .nav.solid{background:color-mix(in oklch,var(--bg) 82%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--border)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-.brand{display:flex;align-items:center;font-weight:600;font-size:1.25rem;letter-spacing:-.01em}
+/* line-height:1 is load-bearing — .brand-name .roll is an inline-block with
+   vertical-align:bottom, so it aligns to the LINE BOX, not to .brand. With an
+   inherited 1.5 line-height the box is 30px against a 20px roll and the
+   wordmark hangs 5px below the nav centreline. Collapsing the line box to 1em
+   makes the two coincide. */
+.brand{display:flex;align-items:center;line-height:1;font-weight:600;font-size:1.25rem;letter-spacing:-.01em}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{font-size:.9rem;color:var(--ink-3);transition:color .2s;position:relative}
 .nav-links a:hover,.nav-links a.active{color:var(--ink)}
@@ -355,7 +360,11 @@ footer{border-top:1px solid var(--border);padding:clamp(56px,8vw,96px) 0 40px;ma
 .foot-col h4{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:16px}
 .foot-col a,.foot-col p{display:block;color:var(--ink-3);font-size:.92rem;margin-bottom:8px;transition:color .2s}
 .foot-col a:hover{color:var(--ink)}
-.foot-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted);border-top:1px solid var(--border);padding-top:28px}
+/* line-height:1 for the same reason as .brand — the signature embeds a
+   .brand-name roll, an inline-block that aligns to the line box rather than
+   to the text beside it, so an inherited 1.5 line-height drops the name
+   below the "© 2026" it sits next to. */
+.foot-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;line-height:1;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted);border-top:1px solid var(--border);padding-top:28px}
 
 /* ═══ NAME ROLL (nav wordmark + footer signature) ══════════════════════════ */
 /* Every .brand-name is split into per-letter masks by motion.js; hovering the
