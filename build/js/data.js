@@ -91,6 +91,7 @@ export const PROJECTS = [
     initial: 'P', color: 'var(--cobalt)',
     kind: 'Payments · SDK', year: '2023 — now',
     role: 'Design lead', duration: '3 yrs · 2023 → now',
+    team: '3 Design · 17 Eng · 5 PM',
     outcome: '30,000+ txns / min',
     summary: 'A pre-built payment screen merchants embed in their own app and brand as their own. I led the rebuild across five platforms for three years. It now runs at 30,000+ transactions a minute.',
     tags: ['Checkout', 'Design system', 'Accessibility', '5 platforms'],

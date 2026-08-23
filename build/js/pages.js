@@ -193,7 +193,8 @@ export function renderCase(slug) {
   const idx = PROJECTS.indexOf(p);
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
 
-  const spec = [['Role', p.role], ['Duration', p.duration], ['Outcome', p.outcome], ['Focus', p.kind]]
+  const spec = [['Role', p.role], ['Team', p.team], ['Duration', p.duration], ['Outcome', p.outcome], ['Focus', p.kind]]
+    .filter(([, v]) => v)
     .map(([k, v]) => `<div class="spec-row"><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
   const metrics = p.metrics.map((m) =>
     `<div class="metric"><strong class="metric-v">${esc(m.v)}</strong><span class="mono metric-l">${esc(m.l)}</span></div>`).join('');
