@@ -70,17 +70,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 65%,rgba(0,0,0,.5) 84%,transparent 100%);
   mask-image:linear-gradient(180deg,#000 0%,#000 65%,rgba(0,0,0,.5) 84%,transparent 100%)}
 
-/* ── GLASS STATE — heavy blur + saturation lift. No seam and no shadow: at
-   the top of a heroless page the bar sits ON the page, same ground, and any
-   edge there reads as a stray band. */
-.nav.solid{background:color-mix(in oklch,var(--bg) 86%,transparent);
-  backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%)}
+/* ── PAGE STATE — on a heroless route the hero scrim is off, and at the top
+   of the page there is nothing running underneath yet: the bar sits ON the
+   page, so it carries NO surface at all. A tinted plate here has nothing to
+   blur and just paints a band that seams against whatever the page's top
+   actually is (every case head carries a project tint, so a --bg plate reads
+   as a cream stripe across it). Transparent is the only thing that blends. */
 .nav.solid::before,.nav.solid::after{opacity:0}
 
-/* ── LIFTED — only once content is actually running underneath. The hairline
-   top highlight and the drop shadow arrive together, so the bar rises off the
-   page exactly when it has something to sit above. */
-.nav.lifted{border-bottom-color:color-mix(in oklch,var(--border) 70%,transparent);
+/* ── GLASS STATE — the surface arrives only once content is running under the
+   bar. Translucent tint + heavy blur + saturation lift, so the page reads
+   through it and the bar takes the colour of whatever it is currently over
+   instead of imposing one. The hairline and the drop shadow come with it, so
+   the bar rises off the page exactly when it has something to sit above. */
+.nav.lifted{background:var(--nav-glass);
+  backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);
+  border-bottom-color:color-mix(in oklch,var(--border) 70%,transparent);
   box-shadow:inset 0 1px 0 oklch(1 0 0/.06),0 8px 28px -14px oklch(0 0 0/.55)}
 
 /* ── over the hero, the nav wears the hero palette in BOTH themes ───────── */
@@ -138,7 +143,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   box-shadow:0 0 8px color-mix(in oklch,var(--chip-dot) 70%,transparent)}
 /* on the pale glass the halo just smears -- drop it, keep the solid dot */
 :root[data-theme="light"] .nav.solid .status::before{box-shadow:none}
-.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:color-mix(in oklch,var(--bg) 86%,transparent);color:var(--ink-2);display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s,transform .1s}
+.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:var(--nav-glass);backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);color:var(--ink-2);display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s,transform .1s}
 .theme-btn:hover{border-color:var(--border-strong);color:var(--ink)}
 .mobile-trigger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;border:1px solid var(--border-strong);border-radius:10px;background:color-mix(in oklch,var(--bg) 45%,transparent);align-items:center;justify-content:center}
 .mobile-trigger span{width:18px;height:1.5px;background:var(--ink-2);transition:transform .3s,opacity .2s}

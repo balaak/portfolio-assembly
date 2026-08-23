@@ -36,10 +36,20 @@ const nav = document.getElementById('nav');
 // scrim would paint a black band across it. Those routes wear the glass bar
 // from the first pixel instead.
 let routeHasHero = true;
+// ...and it stays on for as long as the hero is genuinely still behind the bar,
+// not just for the first 40px. Handing over to the theme glass early puts a
+// pale plate over a black portrait -- in light mode that reads as a grey slab
+// laid across the face. The swap happens when the hero's bottom edge clears
+// the bar, which is exactly when the page proper arrives underneath it.
+const overHero = () => {
+  if (!routeHasHero) return false;
+  const hero = app.querySelector('.hero');
+  return !!hero && hero.getBoundingClientRect().bottom > nav.offsetHeight;
+};
 const onNavScroll = () => {
-  const scrolled = window.scrollY > 40;
-  nav.classList.toggle('solid', !routeHasHero || scrolled);
-  nav.classList.toggle('lifted', scrolled);
+  const onPage = !overHero();
+  nav.classList.toggle('solid', onPage);
+  nav.classList.toggle('lifted', onPage && window.scrollY > 40);
 };
 window.addEventListener('scroll', onNavScroll, { passive: true });
 
