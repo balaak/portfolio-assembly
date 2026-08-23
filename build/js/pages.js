@@ -197,7 +197,38 @@ export function renderCase(slug) {
     .map(([k, v]) => `<div class="spec-row"><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
   const metrics = p.metrics.map((m) =>
     `<div class="metric"><strong class="metric-v">${esc(m.v)}</strong><span class="mono metric-l">${esc(m.l)}</span></div>`).join('');
-  const body = p.body.map((para) => `<p>${esc(para)}</p>`).join('');
+
+  // ── media helpers ─────────────────────────────────────────────────────────
+  const mediaEl = (m) => {
+    if (!m) return '';
+    const cls = `case-media${m.portrait ? ' is-portrait' : ''}`;
+    const inner = m.type === 'video'
+      ? `<video src="${esc(m.src)}" muted loop playsinline preload="metadata"
+           autoplay aria-hidden="true"></video>`
+      : `<img src="${esc(m.src)}" alt="" loading="lazy" decoding="async" />`;
+    const cap = m.caption ? `<p class="media-caption mono">${esc(m.caption)}</p>` : '';
+    return `<figure class="${cls} reveal">${inner}${cap}</figure>`;
+  };
+  const galleryEl = (items) => items && items.length
+    ? `<div class="case-gallery">${items.map(mediaEl).join('')}</div>` : '';
+  const listEl = (rows) => rows && rows.length
+    ? `<dl class="case-list reveal">${rows.map(([k, v]) =>
+        `<div class="case-list-row"><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>` : '';
+
+  // Rich `sections` when present; otherwise the original flat `body`.
+  const body = p.sections && p.sections.length
+    ? p.sections.map((s) => `
+        <section class="case-sec">
+          <div class="container-narrow">
+            ${s.eyebrow ? `<p class="eyebrow reveal">${esc(s.eyebrow)}</p>` : ''}
+            ${s.title ? `<h2 class="case-sec-title reveal">${esc(s.title)}</h2>` : ''}
+            <div class="prose reveal">${(s.body || []).map((t) => `<p>${esc(t)}</p>`).join('')}</div>
+            ${listEl(s.list)}
+          </div>
+          ${s.media ? `<div class="container-narrow">${mediaEl(s.media)}</div>` : ''}
+          ${s.gallery ? `<div class="container">${galleryEl(s.gallery)}</div>` : ''}
+        </section>`).join('')
+    : `<div class="container-narrow prose reveal">${(p.body || []).map((t) => `<p>${esc(t)}</p>`).join('')}</div>`;
 
   const html = `
     <article class="page-case">
@@ -212,13 +243,18 @@ export function renderCase(slug) {
             </div>
             <aside class="case-spec reveal"><dl class="spec">${spec}</dl></aside>
           </div>
-          <div class="case-hero reveal" style="--c:${p.color}"><span class="case-hero-glyph">${p.initial}</span></div>
+          <div class="case-hero reveal" style="--c:${p.color}">${
+            p.cover
+              ? `<video class="case-hero-video" src="${esc(p.cover)}" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>`
+              : `<span class="case-hero-glyph">${p.initial}</span>`
+          }</div>
         </div>
       </section>
       <section class="section pt0"><div class="container"><div class="metric-row reveal">${metrics}</div></div></section>
-      <section class="section pt0"><div class="container-narrow prose reveal">${body}</div></section>
+      <section class="section pt0">${body}</section>
       <section class="section">
         <div class="container">
+          ${p.caseStudyUrl ? `<a class="case-study-link reveal" href="${esc(p.caseStudyUrl)}" target="_blank" rel="noopener"><span class="mono">Full case study</span><span class="next-arrow">↗</span></a>` : ''}
           <div class="hairline"></div>
           <a class="next-cta reveal" href="#/work/${next.slug}">
             <span class="mono">Next case</span>
