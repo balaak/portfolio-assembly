@@ -11,6 +11,12 @@ import {
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => (
   { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const chips = (arr) => arr.map((t) => `<span class="chip">${esc(t)}</span>`).join('');
+// Split a string into per-letter spans so a hover can stagger them. Spaces stay
+// as real spaces (an inline-block space collapses), and each letter carries its
+// own index so CSS can stagger off --i without JS touching the DOM again.
+const letters = (s) => [...String(s)].map((ch, i) => (ch === ' '
+  ? ' '
+  : `<span class="wr-l" style="--i:${i}">${esc(ch)}</span>`)).join('');
 const eyebrow = (t, center = false) =>
   `<p class="eyebrow reveal"${center ? ' style="justify-content:center"' : ''}>${esc(t)}</p>`;
 
@@ -149,11 +155,12 @@ export function renderWork() {
       <span class="mono wr-idx">${String(i + 1).padStart(2, '0')}</span>
       <span class="wr-thumb" style="--c:${p.color}"><span class="wr-glyph">${p.initial}</span></span>
       <span class="wr-main">
-        <span class="h3 wr-name">${esc(p.name)}</span>
+        <span class="h3 wr-name">${letters(p.name)}</span>
         <span class="wr-summary">${esc(p.summary)}</span>
         <span class="wr-tags">${chips(p.tags)}</span>
       </span>
       <span class="wr-meta"><span class="mono">${esc(p.kind)}</span><span class="mono">${esc(p.year)}</span><strong class="wr-outcome">${esc(p.outcome)}</strong></span>
+      <span class="wr-float" style="--c:${p.color}" aria-hidden="true"${p.thumb ? ` data-thumb="${esc(p.thumb)}"` : ''}><span class="wr-float-glyph">${p.initial}</span></span>
       <span class="wr-arrow">↗</span>
     </a>`).join('');
 

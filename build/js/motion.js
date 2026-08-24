@@ -229,6 +229,80 @@ export function bootScrollProgress() {
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
 }
 
+// ── work-list hover: the cover card follows the cursor ───────────────────────
+// One rAF loop for the whole list, running only while a row is hovered. Each
+// row's card eases toward the pointer instead of snapping to it — a plain lerp
+// per frame, which settles like a critically-damped spring with no overshoot.
+// Pointer-only: on touch there is no hover state to drive it, and the card
+// would just sit invisible.
+function initWorkHover(scope) {
+  const rows = scope.querySelectorAll('.work-row');
+  if (!rows.length || reduce || !finePointer) return;
+
+  let active = null;   // the row under the cursor
+  let raf = 0;
+  const at = { x: 0, y: 0 };   // where the card is now (0..1 of the row box)
+  const to = { x: 0.5, y: 0.5 };  // where the cursor is
+
+  // These rows carry a full summary line, not just a heading, so a card free to
+  // roam the whole width parks on top of the copy. It tracks the cursor within
+  // the right-hand band instead — still trailing, never over the sentence.
+  const X_MIN = 0.62, X_MAX = 0.98;
+  const clampX = (v) => Math.min(X_MAX, Math.max(X_MIN, v));
+
+  // How hard the card chases the cursor each frame. Higher tracks tighter;
+  // at 0.14 it sat almost on the pointer, which killed the sense of the card
+  // having any weight. 0.07 lets it lag half a beat behind and coast in.
+  const EASE = 0.07;
+
+  const frame = () => {
+    at.x += (to.x - at.x) * EASE;
+    at.y += (to.y - at.y) * EASE;
+    if (active) {
+      const card = active.querySelector('.wr-float');
+      if (card) {
+        card.style.left = (at.x * 100) + '%';
+        card.style.top = (at.y * 100) + '%';
+      }
+    }
+    // Keep running one beat past the settle so the card lands rather than
+    // freezing a pixel short of the cursor.
+    if (active || Math.abs(to.x - at.x) > 0.001 || Math.abs(to.y - at.y) > 0.001) {
+      raf = requestAnimationFrame(frame);
+    } else { raf = 0; }
+  };
+
+  rows.forEach((row) => {
+    // Real cover art where a project has it; otherwise the card keeps the
+    // gradient-and-initial treatment the small thumb already uses. No stock
+    // photography — a placeholder image next to a named client reads as if it
+    // were that client's work.
+    const card = row.querySelector('.wr-float');
+    if (card && card.dataset.thumb) {
+      card.style.backgroundImage = `url("${card.dataset.thumb}")`;
+      card.classList.add('has-thumb');
+    }
+
+    row.addEventListener('pointerenter', (e) => {
+      active = row;
+      // Start the card where the cursor entered, so it grows from under the
+      // pointer instead of flying in from the row's centre.
+      const r = row.getBoundingClientRect();
+      at.x = to.x = clampX((e.clientX - r.left) / r.width);
+      at.y = to.y = (e.clientY - r.top) / r.height;
+      if (!raf) raf = requestAnimationFrame(frame);
+    });
+
+    row.addEventListener('pointermove', (e) => {
+      const r = row.getBoundingClientRect();
+      to.x = clampX((e.clientX - r.left) / r.width);
+      to.y = (e.clientY - r.top) / r.height;
+    });
+
+    row.addEventListener('pointerleave', () => { if (active === row) active = null; });
+  });
+}
+
 // ── per-route entry point ────────────────────────────────────────────────────
 export function mount(scope) {
   initReveals(scope);
@@ -236,4 +310,5 @@ export function mount(scope) {
   initCounters(scope);
   initMarquee(scope);
   initMagnetic(scope);
+  initWorkHover(scope);
 }
