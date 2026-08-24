@@ -29,6 +29,10 @@
      over the hero it stays on the dark values above, in both themes. */
   --chip-ink:var(--hero-chip-ink); --chip-dot:var(--hero-chip-dot);
   --chip-tint:17%; --chip-base:color-mix(in oklch,var(--hero-bg) 96%,transparent);
+  /* nav glass — translucent enough that the backdrop actually reads through it.
+     Anything above ~80% is paint, not glass, and seams against any page whose
+     top band isn't plain --bg (every case head carries a project tint). */
+  --nav-glass:color-mix(in oklch,var(--bg) 72%,transparent);
 
   --max:1200px; --narrow:760px; --pad:clamp(24px,5vw,64px);
   --r-sm:8px; --r-md:14px; --r-lg:20px; --r-xl:28px; --r-pill:999px;
@@ -47,4 +51,5 @@
   --accent:oklch(0.88 0.18 95); --accent-ink:oklch(0.22 0.05 90);
   --chip-ink:oklch(0.38 0.12 150); --chip-dot:oklch(0.55 0.16 150);
   --chip-tint:24%; --chip-base:color-mix(in oklch,var(--bg) 92%,transparent);
+  --nav-glass:color-mix(in oklch,var(--bg) 66%,transparent);
 }

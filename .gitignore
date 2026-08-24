@@ -16,3 +16,6 @@ reference/
 
 # Local experiments — never deploy (e.g. SplashCursor study)
 build/experiments/
+
+# Working screenshots from verification sweeps
+/bug/
