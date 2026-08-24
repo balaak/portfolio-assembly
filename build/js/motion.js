@@ -250,9 +250,14 @@ function initWorkHover(scope) {
   const X_MIN = 0.62, X_MAX = 0.98;
   const clampX = (v) => Math.min(X_MAX, Math.max(X_MIN, v));
 
+  // How hard the card chases the cursor each frame. Higher tracks tighter;
+  // at 0.14 it sat almost on the pointer, which killed the sense of the card
+  // having any weight. 0.07 lets it lag half a beat behind and coast in.
+  const EASE = 0.07;
+
   const frame = () => {
-    at.x += (to.x - at.x) * 0.14;
-    at.y += (to.y - at.y) * 0.14;
+    at.x += (to.x - at.x) * EASE;
+    at.y += (to.y - at.y) * EASE;
     if (active) {
       const card = active.querySelector('.wr-float');
       if (card) {
