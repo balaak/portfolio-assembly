@@ -96,6 +96,7 @@ export const PROJECTS = [
     summary: 'A pre-built payment screen merchants embed in their own app and brand as their own. I led the rebuild across five platforms for three years. It now runs at 30,000+ transactions a minute.',
     tags: ['Checkout', 'Design system', 'Accessibility', '5 platforms'],
     cover: 'media/pg-sdk/hero-reel.mp4',
+    thumb: 'media/pg-sdk/billdesk-ui-thumbnail.webp',
     metrics: [
       { v: '30,000+', l: 'Txns / min at peak' },
       { v: '1wk → 48h', l: 'Merchant time-to-integrate' },
