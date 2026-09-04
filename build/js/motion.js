@@ -62,18 +62,34 @@ function initCounters(scope) {
 }
 
 // ── velocity-reactive marquee (per route) ────────────────────────────────────
-function initMarquee(scope) {
+// Speed is driven via WAAPI playbackRate, not animation-duration: changing
+// duration on a running CSS animation keeps elapsed time and recomputes
+// progress as elapsed/newDuration, which teleports the track every scroll
+// frame. playbackRate changes are continuous — same position, new speed.
+function initMarquee(scope, signal) {
   const track = scope.querySelector('.marquee-track');
   if (!track || reduce) return;
-  let last = window.scrollY, idle;
+  const anim = track.getAnimations()[0];
+  if (!anim) return;
+
+  let last = window.scrollY, target = 1, rate = 1, raf = null;
+
   const onScroll = () => {
-    const v = Math.abs(window.scrollY - last); last = window.scrollY;
-    const dur = Math.max(12, 42 - v * 0.8);
-    track.style.animationDuration = dur + 's';
-    clearTimeout(idle);
-    idle = setTimeout(() => { track.style.animationDuration = '42s'; }, 220);
+    const v = Math.abs(window.scrollY - last);
+    last = window.scrollY;
+    target = Math.min(3.5, 1 + v * 0.06);
+    if (!raf) raf = requestAnimationFrame(loop);
   };
-  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const loop = () => {
+    rate += (target - rate) * 0.12;        // critically damped ease toward target
+    anim.playbackRate = rate;
+    target += (1 - target) * 0.05;         // decay back to 1x on its own
+    if (Math.abs(rate - 1) > 0.01) raf = requestAnimationFrame(loop);
+    else { anim.playbackRate = 1; raf = null; }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true, signal });
 }
 
 // ── process step rail (home) ─────────────────────────────────────────────────
@@ -304,11 +320,19 @@ function initWorkHover(scope) {
 }
 
 // ── per-route entry point ────────────────────────────────────────────────────
+// scope (the #app element) survives every route swap, only its innerHTML is
+// replaced — so a controller stashed on it persists across mount() calls and
+// lets each new mount tear down the previous route's window-level listeners
+// before attaching its own.
 export function mount(scope) {
+  scope.__motionAbort?.abort();
+  const ac = new AbortController();
+  scope.__motionAbort = ac;
+
   initReveals(scope);
   initLazyMedia(scope);
   initCounters(scope);
-  initMarquee(scope);
+  initMarquee(scope, ac.signal);
   initMagnetic(scope);
   initWorkHover(scope);
 }
