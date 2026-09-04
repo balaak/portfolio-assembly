@@ -3,7 +3,7 @@
 // Pure string templating (no framework). onMount wires per-page interactions.
 // ═══════════════════════════════════════════════════════════════════════════
 import {
-  PROFILE, MARQUEE, PRACTICES, PROCESS, NUMBERS, PROJECTS, ARTICLES,
+  PROFILE, MARQUEE, PRACTICES, PROCESS, NUMBERS, CERTIFICATIONS, PROJECTS, ARTICLES,
   EXPERIENCE, VALUES, STACK, findProject, findArticle,
 } from './data.js';
 
@@ -53,6 +53,15 @@ export function renderHome() {
   const stats = NUMBERS.map((n) => `
     <div class="stat"><div class="stat-num" data-target="${n.target}" data-suffix="${n.suffix}">0</div>
     <div class="stat-label">${esc(n.label)}</div></div>`).join('');
+
+  const certCol = (cat) => CERTIFICATIONS.filter((c) => c.cat === cat).map((c) => `
+    <div class="cert-item">
+      <div class="cert-item-main">
+        <span class="cert-name">${esc(c.name)}</span>
+        <span class="cert-issuer mono">${esc(c.issuer)}</span>
+      </div>
+      ${c.note ? `<span class="pill">${esc(c.note)}</span>` : ''}
+    </div>`).join('');
 
   const posts = writing.map((a) => `
     <a class="post reveal" href="#/blog/${a.slug}">
@@ -116,6 +125,23 @@ export function renderHome() {
         ${eyebrow('In numbers')}
         <h2 class="s-title reveal" style="margin-bottom:56px">The scoreboard, kept honest.</h2>
         <div class="stat-grid reveal">${stats}</div>
+      </div>
+    </section>
+
+    <section class="section bordered" id="certifications-sec">
+      <div class="container">
+        ${eyebrow('Certifications')}
+        <h2 class="s-title reveal" style="margin-bottom:56px">Two disciplines, one continuous practice.</h2>
+        <div class="cert-grid reveal">
+          <div class="cert-col">
+            <h3 class="cert-col-title">AI</h3>
+            <div class="cert-list">${certCol('AI')}</div>
+          </div>
+          <div class="cert-col">
+            <h3 class="cert-col-title">Design</h3>
+            <div class="cert-list">${certCol('Design')}</div>
+          </div>
+        </div>
       </div>
     </section>
 

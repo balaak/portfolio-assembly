@@ -90,7 +90,7 @@ Dual theme via `[data-theme="dark|light"]` on `<html>`. **Dark is default.** A h
 
 ---
 
-## 4 · Section architecture — the 7 Lego slots
+## 4 · Section architecture — the 8 Lego slots
 
 Each slot: **dummy → real** content map. Full facts in `CONTENT-TRUTH.md`.
 
@@ -101,8 +101,9 @@ Each slot: **dummy → real** content map. Full facts in `CONTENT-TRUTH.md`.
 | 3 | **Process (6 wks / 4 moves)** | Scroll-pinned steps | His real method: Diagnose → Design → Govern → Ship (design-system governance flavor) |
 | 4 | **6 Projects** | Project grid w/ tags + metrics | **Multi-Brand Design System** (flagship) · **BillDesk PG SDK** · **AI color-token pipeline** · **TATA 1mg CRO** · **ASKME Bazaar** · **Mindhelix Rico** — *banks anonymized* |
 | 5 | **Scoreboard** | Odometer counters | 14+ yrs · 3,000+ components · 20–25 bank brands · 9M+ downloads · 30k txns/min · $100K+ Kickstarter |
-| 6 | **Writing** | Notes cards | Real: multi-tenant DS case study; "DESIGN.md" experiment. *(Or fold into Projects if thin.)* |
-| 7 | **Timeline + Footer** | Career chapters, contact | Mindhelix → ASKME → MobME → TATA 1mg → Hatio/BillDesk. Footer → balaashokan@gmail.com, LinkedIn, "Kochi → Dubai" |
+| 6 | **Certifications** | Two-column AI / Design cert list | Anthropic AI Fluency · Claude Code 101 · IxDF Usability Testing (Best-in-Class), Accessibility, HCI, Interaction Design (Top 10%) — *added via [#2](https://github.com/balaak/portfolio-assembly/issues/2), placement confirmed by Bala* |
+| 7 | **Writing** | Notes cards | Real: multi-tenant DS case study; "DESIGN.md" experiment. *(Or fold into Projects if thin.)* |
+| 8 | **Timeline + Footer** | Career chapters, contact | Mindhelix → ASKME → MobME → TATA 1mg → Hatio/BillDesk. Footer → balaashokan@gmail.com, LinkedIn, "Kochi → Dubai" |
 
 **Removed entirely:** fake testimonials (Anika Rao / Daniel Hsu), fake freelance CTAs ("two slots open"), 91pixels founder framing.
 

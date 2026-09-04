@@ -63,6 +63,17 @@ export const NUMBERS = [
   { target: 30,   suffix: 'K/min', label: 'Live checkout throughput' },
 ];
 
+// CERTIFICATIONS — verified, from CONTENT-TRUTH.md. No years on file, so none
+// are shown rather than guessed.
+export const CERTIFICATIONS = [
+  { cat: 'AI', name: 'AI Fluency', issuer: 'Anthropic' },
+  { cat: 'AI', name: 'Claude Code 101', issuer: 'Anthropic' },
+  { cat: 'Design', name: 'Usability Testing', issuer: 'Interaction Design Foundation', note: 'Best-in-Class' },
+  { cat: 'Design', name: 'Accessibility', issuer: 'Interaction Design Foundation' },
+  { cat: 'Design', name: 'HCI', issuer: 'Interaction Design Foundation' },
+  { cat: 'Design', name: 'Interaction Design', issuer: 'Interaction Design Foundation', note: 'Top 10%' },
+];
+
 // PROJECTS — real work. `body` paragraphs are faithful expansions of the
 // verified summaries (no invented metrics). Replace/extend with full case
 // studies when ready.
