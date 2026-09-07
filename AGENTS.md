@@ -4,6 +4,11 @@ Read this before picking up **any** issue. Applies equally to Claude, Codex, Gem
 Grok, or any other coding agent — Bala runs experiments across multiple agents on
 this repo, so behavior must stay consistent regardless of who's driving.
 
+> **Before picking up any issue, read [`ORCHESTRATOR.md`](./ORCHESTRATOR.md).**
+> `AGENTS.md` governs *how* a code change is made. `ORCHESTRATOR.md` governs *how work
+> moves through the board* — selection, claiming, the review gate, and the hard rule that
+> nothing is merged, pushed, or deployed without Bala's explicit approval.
+
 ---
 
 ## 1 · Source of truth
