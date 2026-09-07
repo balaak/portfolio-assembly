@@ -396,7 +396,7 @@ export function renderAbout() {
 
     <section class="section pt0"><div class="container-narrow prose about-bio reveal">
       <p class="dropcap">I design at the seams — where a design system meets twenty-five bank brands, where a checkout meets a failing payment, where a Claude pipeline meets a designer’s afternoon of repetitive work. The common thread across fourteen years is a stubborn question: does this design actually move a number?</p>
-      <p>I’ve built the design function at Hatio · BillDesk from a single hire to a peak of eighteen, founded a multi-tenant design system running at national-bank scale, and led the Payment Gateway SDK that now sits inside a super-app handling 30,000+ transactions a minute. Lately, much of my energy goes into AI-augmented design ops — compressing the careful, repetitive parts of the job from days into minutes.</p>
+      <p>I’ve built the design function at Hatio · BillDesk from a single hire to a peak of eighteen, founded a multi-tenant design system running at national-bank scale, and led the Payment Gateway SDK that sits inside a super-app handling 30,000+ transactions a minute. Much of my recent work has been in AI-augmented design ops — compressing the careful, repetitive parts of the job from days into minutes.</p>
       <p>I’m based in Dubai and open to Head / Lead Product Design roles, available immediately. If your team cares about both craft and conversion — which, in my experience, are the same problem seen from two sides — let’s talk.</p>
     </div></section>
 

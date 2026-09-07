@@ -71,8 +71,8 @@ export const PROJECTS = [
     slug: 'multi-brand-design-system',
     name: 'Multi-brand design system',
     initial: 'S', color: 'var(--accent)',
-    kind: 'Design system · Fintech', year: '2020 — now',
-    role: 'Founder & DS Lead', duration: '2020 — now', outcome: '3,000+ components',
+    kind: 'Design system · Fintech', year: '2020 — 2026',
+    role: 'Founder & DS Lead', duration: '2020 — 2026', outcome: '3,000+ components',
     summary: 'Founded a multi-tenant system that skins one component set across 20–25 bank brands and five platforms. Brand swaps went from 2–3 days to under 10 minutes. ~9 of 10 products migrated.',
     tags: ['Design system', 'Tokens', 'Governance', 'Multi-tenant'],
     metrics: [
@@ -310,7 +310,7 @@ export const EXPERIENCE = [
     note: 'Retail-banking apps and Compaz, a bank behavioural-analytics tool that earned $45K from two banks.' },
   { years: '2018 — 2020', org: 'TATA 1mg', role: 'Senior UX Designer',
     note: 'Led a pharmacy squad on a 75M-user health platform. +23% checkout conversion, +12% AOV.' },
-  { years: '2020 — present', org: 'Hatio · BillDesk', role: 'Head of Product Design', current: true,
+  { years: '2020 — 2026', org: 'Hatio · BillDesk', role: 'Head of Product Design', current: false,
     note: 'Built the design function from one hire to a peak of 18. Founded the multi-tenant design system and led the Payment Gateway SDK behind several of India’s largest banks.' },
 ];
 
