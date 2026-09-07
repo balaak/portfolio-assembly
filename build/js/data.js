@@ -28,16 +28,16 @@ export const MARQUEE = [
 
 export const PRACTICES = [
   { n: '01', t: 'Design systems at scale',
-    d: 'Multi-tenant, atomic systems that skin one component set across many brands — governed, documented, and honest after I leave.',
+    d: 'One component set, skinned across 20–25 bank brands on five platforms. Brand swaps dropped from three days to under ten minutes, and the governance holds up long after I’ve left.',
     tag: 'National-bank scale' },
   { n: '02', t: 'Payments & product UX',
-    d: 'End-to-end UX for fintech — checkout, onboarding, retry-and-fallback flows that quietly recover revenue.',
-    tag: 'Fintech / payments' },
+    d: 'Checkout, onboarding, and retry flows that quietly win back lost revenue. The spine is fintech — a payment SDK now clearing 30,000 transactions a minute — but the same work has shipped in healthcare, ecommerce, and for a crypto exchange.',
+    tag: 'Fintech · health · commerce · web3' },
   { n: '03', t: 'AI-augmented design',
-    d: 'Claude & GPT pipelines that compress concept-to-prototype and automate theming, accessibility audits, and onboarding.',
+    d: 'I build Claude and GPT pipelines for the parts of design that shouldn’t take a human all week. One turns a brand color into sixteen accessible palettes in minutes; another runs the accessibility audits, including the one a regulator review required.',
     tag: 'New for 2026' },
   { n: '04', t: 'Design leadership & CRO',
-    d: 'Building and running design teams where every screen owes a hypothesis — and a number it moved.',
+    d: 'From the only designer in the room to a team of eighteen. The standard never changed: every screen owes a hypothesis, and a number it moved.',
     tag: 'Team of 1 → 18' },
 ];
 
