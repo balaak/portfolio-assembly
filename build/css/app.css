@@ -180,13 +180,31 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @keyframes scroll-x{to{transform:translateX(-50%)}}
 
 /* ═══ PRACTICES ════════════════════════════════════════════════════════════ */
-.practice-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden}
+.practice-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden}
 .practice{padding:36px 30px 30px;border-right:1px solid var(--border);display:flex;flex-direction:column;min-height:340px;transition:background .3s}
 .practice:last-child{border-right:none}
 .practice:hover{background:var(--bg-elevated)}
 .practice h3{font-size:1.7rem;font-weight:500;letter-spacing:-.02em;line-height:1.08;margin:22px 0 16px}
 .practice p{color:var(--ink-3);font-size:.95rem;flex:1}
-.practice .pill{align-self:flex-start;margin-top:24px}
+.practice .pill{align-self:flex-start;margin-top:24px;max-width:100%}
+/* auto-scrolling pill — motion.js wraps the label in .pill-run (two copies) on
+   every practice pill, and toggles .is-scroll only on pills whose label is
+   wider than its slot at the current breakpoint. */
+.pill-run{display:inline-flex}
+.pill .pill-seg{flex:none}
+.pill .pill-seg:nth-child(2){display:none}
+.pill.is-scroll{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%)}
+.pill.is-scroll .pill-run{white-space:nowrap;animation:pill-scroll var(--pill-dur,9s) linear infinite;will-change:transform}
+.pill.is-scroll:hover .pill-run{animation-play-state:paused}
+.pill.is-scroll .pill-seg{padding-right:1.6em}
+.pill.is-scroll .pill-seg:nth-child(2){display:inline-block}
+@keyframes pill-scroll{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+  .pill.is-scroll{overflow:visible;white-space:normal;-webkit-mask-image:none;mask-image:none;line-height:1.5}
+  .pill.is-scroll .pill-run{animation:none;display:inline;white-space:normal}
+  .pill.is-scroll .pill-seg:nth-child(2){display:none}
+  .pill.is-scroll .pill-seg{padding-right:0}
+}
 @media(max-width:900px){.practice-grid{grid-template-columns:repeat(2,1fr)}.practice:nth-child(2){border-right:none}.practice:nth-child(1),.practice:nth-child(2){border-bottom:1px solid var(--border)}}
 @media(max-width:560px){.practice-grid{grid-template-columns:1fr}.practice{border-right:none;border-bottom:1px solid var(--border);min-height:0}.practice:last-child{border-bottom:none}}
 
