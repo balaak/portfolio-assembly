@@ -46,7 +46,7 @@ export const PROCESS = [
     d: 'Analytics teardown, session recordings, and a hypothesis backlog. We agree on the number we’re moving before any pixels move.',
     tags: ['Audit', 'Hypotheses'] },
   { n: '02', name: 'Design', week: 'Week 1–3',
-    d: 'Hi-fi flows in Figma and Framer, motion included. Real copy, real data — testable with real users by Friday.',
+    d: 'Hi-fi flows in Figma and Framer, motion included. Real copy, real data, testable with real users by Friday.',
     tags: ['Figma', 'Framer', 'Motion'] },
   { n: '03', name: 'Systematize', week: 'Week 3–5',
     d: 'Tokens, components, and governance so the work survives me. Dev-ready handoff, semantic theming, states beyond the happy path.',
@@ -71,8 +71,8 @@ export const PROJECTS = [
     slug: 'multi-brand-design-system',
     name: 'Multi-brand design system',
     initial: 'S', color: 'var(--accent)',
-    kind: 'Design system · Fintech', year: '2020 — 2026',
-    role: 'Founder & DS Lead', duration: '2020 — 2026', outcome: '3,000+ components',
+    kind: 'Design system · Fintech', year: '2020–2026',
+    role: 'Founder & DS Lead', duration: '2020–2026', outcome: '3,000+ components',
     summary: 'Founded a multi-tenant system that skins one component set across 20–25 bank brands and five platforms. Brand swaps went from 2–3 days to under 10 minutes. ~9 of 10 products migrated.',
     tags: ['Design system', 'Tokens', 'Governance', 'Multi-tenant'],
     metrics: [
@@ -81,7 +81,7 @@ export const PROJECTS = [
       { v: '~9/10', l: 'Products migrated' },
     ],
     body: [
-      'A single component set had to wear 20–25 different bank brands across five platforms — without forking, and without the design team becoming a bottleneck. The answer was semantic tokens: one atomic system, skinned per tenant.',
+      'A single component set had to wear 20–25 different bank brands across five platforms, without forking, and without the design team becoming a bottleneck. The answer was semantic tokens: one atomic system, skinned per tenant.',
       'Governance was the real product. Documentation, contribution rules, and a theming layer meant the system stayed honest after I stepped back. Brand swaps that used to take 2–3 days now take under ten minutes, and roughly nine of ten products migrated onto it.',
     ],
   },
@@ -89,7 +89,7 @@ export const PROJECTS = [
     slug: 'payment-gateway-sdk',
     name: 'BillDesk Payment SDK',
     initial: 'P', color: 'var(--cobalt)',
-    kind: 'Payments · SDK', year: '2023 — now',
+    kind: 'Payments · SDK', year: '2023–now',
     role: 'Design lead', duration: '3 yrs · 2023 → now',
     team: '3 Design · 17 Eng · 5 PM',
     outcome: '30,000+ txns / min',
@@ -139,9 +139,9 @@ export const PROJECTS = [
         gallery: [
           { src: 'media/pg-sdk/spectrum-pg-sdk.mp4', type: 'video', ratio: '1918/1278' },
           { src: 'media/pg-sdk/customization.mp4', type: 'video',
-            caption: 'The title bar syncs to each merchant’s brand colour automatically — no manual theming per integration.' },
+            caption: 'The title bar syncs to each merchant’s brand colour automatically, with no manual theming per integration.' },
           { src: 'media/pg-sdk/pulsebar.mp4', type: 'video',
-            caption: 'What the title bar carries is configurable too — SummarySnap, profile login and language selection are all new additions.' },
+            caption: 'What the title bar carries is configurable too: SummarySnap, profile login and language selection are all new additions.' },
           { src: 'media/pg-sdk/variables-mapping.webp', type: 'image' },
           { src: 'media/pg-sdk/billdesk-ui-thumbnail.webp', type: 'image' },
         ],
@@ -160,7 +160,7 @@ export const PROJECTS = [
         title: 'Pay in your own currency, not the merchant’s.',
         body: [
           'Right before you confirm, the screen offers a choice: pay in your own currency and see the exact number now, or pay in the merchant’s and let your bank convert it later. That’s the choice Dynamic Currency Conversion gives the cardholder.',
-          'It looks like a small screen, but it’s an easy one to get wrong: the rate is set by the payment network, not the cardholder’s own bank, so it isn’t always the better deal. That’s the edge case I designed around — making sure the screen never nudged the choice either way.',
+          'It looks like a small screen, but it’s an easy one to get wrong: the rate is set by the payment network, not the cardholder’s own bank, so it isn’t always the better deal. That’s the edge case I designed around, making sure the screen never nudged the choice either way.',
         ],
         inlineMedia: { after: 0, src: 'media/pg-sdk/dcc-reel.mp4', type: 'video' },
         media: { src: 'media/pg-sdk/dcc-hero.mp4', type: 'video', ratio: '1020/1828', portrait: true },
@@ -175,7 +175,7 @@ export const PROJECTS = [
         eyebrow: 'The proof',
         title: 'Everything added afterwards, without a rebuild.',
         body: [
-          'Launching was never the test. The test was what the architecture could absorb over the next two years — dynamic QR, rail ticketing at national scale, NPCI’s interoperable netbanking switch, and e-mandates for recurring debits, each with its own edge cases.',
+          'Launching was never the test. The test was what the architecture could absorb over the next two years: dynamic QR, rail ticketing at national scale, NPCI’s interoperable netbanking switch, and e-mandates for recurring debits, each with its own edge cases.',
         ],
       },
       {
@@ -195,7 +195,7 @@ export const PROJECTS = [
     initial: 'A', color: 'var(--violet)',
     kind: 'AI · Design ops', year: '2025',
     role: 'AI design ops', duration: '2025', outcome: '1.5 days → 10 min',
-    summary: 'A Claude pipeline: one logo in, sixteen WCAG-checked, auto-named palettes out — shipped as dev-ready variables. Per-bank theming dropped from ~1.5 days to under ten minutes.',
+    summary: 'A Claude pipeline: one logo in, sixteen WCAG-checked, auto-named palettes out, shipped as dev-ready variables. Per-bank theming dropped from ~1.5 days to under ten minutes.',
     tags: ['Claude', 'WCAG', 'Automation'],
     metrics: [
       { v: '16', l: 'WCAG palettes per logo' },
@@ -203,7 +203,7 @@ export const PROJECTS = [
       { v: 'Dev-ready', l: 'Variables shipped' },
     ],
     body: [
-      'Theming a new bank brand meant a designer hand-building palettes and checking contrast — about a day and a half of careful, repetitive work per tenant.',
+      'Theming a new bank brand meant a designer hand-building palettes and checking contrast: about a day and a half of careful, repetitive work per tenant.',
       'The pipeline takes one logo and returns sixteen WCAG-checked, auto-named palettes as dev-ready variables. Per-bank theming collapsed from ~1.5 days to under ten minutes, and the output plugs straight into the design system’s token layer.',
     ],
   },
@@ -211,8 +211,8 @@ export const PROJECTS = [
     slug: 'pharmacy-conversion-rebuild',
     name: 'Pharmacy conversion rebuild',
     initial: 'H', color: 'var(--sage)',
-    kind: 'Health · CRO', year: '2018 — 20',
-    role: 'Senior UX Designer', duration: '2018 — 20', outcome: '+23% checkout',
+    kind: 'Health · CRO', year: '2018–20',
+    role: 'Senior UX Designer', duration: '2018–20', outcome: '+23% checkout',
     summary: 'One-click PDP checkout and a chronic-care upsell for a 75M-user health platform. +23% checkout conversion, −15% cart abandonment, +12% average order value.',
     tags: ['CRO', 'E-commerce', 'Research'],
     metrics: [
@@ -222,15 +222,15 @@ export const PROJECTS = [
     ],
     body: [
       'On a 75M-user health platform, the distance between "add to cart" and "order placed" was where revenue leaked. I led a pharmacy squad to compress it: one-click checkout from the product page, plus a chronic-care upsell that fit the user’s real buying rhythm.',
-      'The numbers moved together — +23% checkout conversion, −15% cart abandonment, +12% average order value — which is the honest test of a CRO rebuild: not one metric up while another quietly falls.',
+      'The numbers moved together (+23% checkout conversion, −15% cart abandonment, +12% average order value), which is the honest test of a CRO rebuild: not one metric up while another quietly falls.',
     ],
   },
   {
     slug: 'marketplace-app',
     name: 'Marketplace app, 0 → 9M',
     initial: 'M', color: 'var(--tomato)',
-    kind: 'Marketplace · Mobile', year: '2015 — 16',
-    role: 'Lead UX Designer', duration: '2015 — 16', outcome: '9M+ downloads',
+    kind: 'Marketplace · Mobile', year: '2015–16',
+    role: 'Lead UX Designer', duration: '2015–16', outcome: '9M+ downloads',
     summary: 'Led iOS and Android UX from inception to 9M+ downloads; collapsed a two-step checkout to one for returning users on a national shopping marketplace.',
     tags: ['Mobile', 'iOS / Android', 'Checkout'],
     metrics: [
@@ -239,7 +239,7 @@ export const PROJECTS = [
       { v: 'iOS/Android', l: 'From inception' },
     ],
     body: [
-      'A national shopping marketplace, designed for both platforms from inception. The work grew to 9M+ downloads — scale that punishes any friction you leave in the critical path.',
+      'A national shopping marketplace, designed for both platforms from inception. The work grew to 9M+ downloads, scale that punishes any friction you leave in the critical path.',
       'The sharpest win was collapsing a two-step checkout to one for returning users: fewer taps, less drop-off, a smoother return for the people most likely to buy again.',
     ],
   },
@@ -247,9 +247,9 @@ export const PROJECTS = [
     slug: 'iot-security-product',
     name: 'IoT security product',
     initial: 'R', color: 'var(--orange)',
-    kind: 'IoT · Product', year: '2011 — 15',
-    role: 'UX Designer', duration: '2011 — 15', outcome: '$100K+ raised',
-    summary: 'Designed a smart-home security product and its companion app — raised $100K+ on Kickstarter, and the app won NASSCOM AppFame and a Google "best apps" nod.',
+    kind: 'IoT · Product', year: '2011–15',
+    role: 'UX Designer', duration: '2011–15', outcome: '$100K+ raised',
+    summary: 'Designed a smart-home security product and its companion app. It raised $100K+ on Kickstarter, and the app won NASSCOM AppFame and a Google "best apps" nod.',
     tags: ['IoT', 'Hardware', '0→1'],
     metrics: [
       { v: '$100K+', l: 'Kickstarter raised' },
@@ -257,8 +257,8 @@ export const PROJECTS = [
       { v: 'Google', l: '"Best apps" nod' },
     ],
     body: [
-      'A smart-home security product and its companion app, designed 0→1 — hardware and software as one experience, which is the only way IoT ever feels trustworthy.',
-      'It raised $100K+ on Kickstarter, and the app went on to win NASSCOM AppFame and a Google "best apps" mention — early proof that craft and outcomes aren’t opposing forces.',
+      'A smart-home security product and its companion app, designed 0→1: hardware and software as one experience, which is the only way IoT ever feels trustworthy.',
+      'It raised $100K+ on Kickstarter, and the app went on to win NASSCOM AppFame and a Google "best apps" mention, early proof that craft and outcomes aren’t opposing forces.',
     ],
   },
 ];
@@ -268,23 +268,23 @@ export const PROJECTS = [
 export const ARTICLES = [
   {
     slug: 'design-system-leverage',
-    title: 'A design system is not a library — it’s leverage.',
+    title: 'A design system is not a library. It’s leverage.',
     category: 'Design systems', color: 'var(--accent)',
     date: 'Case study', readTime: '12 min',
     deck: 'How one component set learns to wear 25 bank brands, and why semantic tokens are the whole trick.',
     body: [
-      'Most teams treat a design system as a component library — a shelf you pull from. That framing caps its value at "time saved." The systems that actually change how a company ships treat it as leverage: one set of decisions, multiplied across every brand and platform that inherits them.',
-      'The whole trick is semantic tokens. When a component asks for "surface" and "accent" instead of a hex value, skinning 25 bank brands stops being 25 design projects and becomes one. This is the story of building that layer at national-bank scale — and the governance that kept it honest after I left.',
+      'Most teams treat a design system as a component library, a shelf you pull from. That framing caps its value at "time saved." The systems that actually change how a company ships treat it as leverage: one set of decisions, multiplied across every brand and platform that inherits them.',
+      'The whole trick is semantic tokens. When a component asks for "surface" and "accent" instead of a hex value, skinning 25 bank brands stops being 25 design projects and becomes one. This is the story of building that layer at national-bank scale, and the governance that kept it honest after I left.',
     ],
   },
   {
     slug: 'design-md-ai-context',
-    title: 'DESIGN.md — giving AI your design context before it generates.',
+    title: 'DESIGN.md: giving AI your design context before it generates.',
     category: 'AI × Design', color: 'var(--violet)',
     date: 'Experiment', readTime: '9 min',
     deck: 'A portable spec that agents read first, so the output comes out on-brand every session. Proven by building the same site twice.',
     body: [
-      'AI generates confidently and generically. The fix isn’t a longer prompt — it’s a portable design context the agent reads before it writes a single line: tokens, motion rules, section architecture, voice.',
+      'AI generates confidently and generically. The fix isn’t a longer prompt. It’s a portable design context the agent reads before it writes a single line: tokens, motion rules, section architecture, voice.',
       'I proved it by building the same portfolio twice from one DESIGN.md. The output came out on-brand both times, because the brand lived in the spec, not in my memory of the last session. Here’s the format, and what it taught me about designing for agents.',
     ],
   },
@@ -293,24 +293,24 @@ export const ARTICLES = [
     title: 'From 1.5 days to 10 minutes: theming with AI.',
     category: 'Design ops', color: 'var(--tomato)',
     date: 'Field note', readTime: '6 min',
-    deck: 'A Claude pipeline that turns a single logo into sixteen accessible, dev-ready palettes — and what it taught me about governance.',
+    deck: 'A Claude pipeline that turns a single logo into sixteen accessible, dev-ready palettes, and what it taught me about governance.',
     body: [
-      'Per-bank theming was a day and a half of careful, repetitive contrast-checking. It was exactly the kind of work that’s too important to rush and too mechanical to enjoy — which is to say, the perfect thing to automate.',
+      'Per-bank theming was a day and a half of careful, repetitive contrast-checking. It was exactly the kind of work that’s too important to rush and too mechanical to enjoy, which is to say, the perfect thing to automate.',
       'The pipeline takes one logo and returns sixteen WCAG-checked, auto-named palettes as dev-ready variables. But the real lesson was about governance: automation only works when the system it feeds is already principled. Speed amplifies whatever structure you already have.',
     ],
   },
 ];
 
 export const EXPERIENCE = [
-  { years: '2011 — 2015', org: 'Mindhelix', role: 'UX Designer',
+  { years: '2011–2015', org: 'Mindhelix', role: 'UX Designer',
     note: 'Designed Rico, an IoT smart-home product that raised $100K+ on Kickstarter. Sentinel app won NASSCOM AppFame.' },
-  { years: '2015 — 2016', org: 'ASKME', role: 'Lead UX Designer',
-    note: 'Led a national marketplace app across iOS and Android — inception to 9M+ downloads.' },
-  { years: '2016 — 2018', org: 'MobME', role: 'Product Head & UX Designer',
+  { years: '2015–2016', org: 'ASKME', role: 'Lead UX Designer',
+    note: 'Led a national marketplace app across iOS and Android, inception to 9M+ downloads.' },
+  { years: '2016–2018', org: 'MobME', role: 'Product Head & UX Designer',
     note: 'Retail-banking apps and Compaz, a bank behavioural-analytics tool that earned $45K from two banks.' },
-  { years: '2018 — 2020', org: 'TATA 1mg', role: 'Senior UX Designer',
+  { years: '2018–2020', org: 'TATA 1mg', role: 'Senior UX Designer',
     note: 'Led a pharmacy squad on a 75M-user health platform. +23% checkout conversion, +12% AOV.' },
-  { years: '2020 — 2026', org: 'Hatio · BillDesk', role: 'Head of Product Design', current: false,
+  { years: '2020–2026', org: 'Hatio · BillDesk', role: 'Head of Product Design', current: false,
     note: 'Built the design function from one hire to a peak of 18. Founded the multi-tenant design system and led the Payment Gateway SDK behind several of India’s largest banks.' },
 ];
 
@@ -318,7 +318,7 @@ export const VALUES = [
   { n: '01', t: 'Every screen owes a number.',
     b: 'A design carries a hypothesis. If you can’t name the metric it’s meant to move, the work isn’t finished.' },
   { n: '02', t: 'Systems before screens.',
-    b: 'A good system makes the next ten screens cheap — and honest after you leave. Governance is the product, not the by-product.' },
+    b: 'A good system makes the next ten screens cheap, and honest after you leave. Governance is the product, not the by-product.' },
   { n: '03', t: 'Recover the revenue nobody sees.',
     b: 'The best fintech UX is invisible: retry-and-fallback flows, one fewer step at checkout, the failed payment that quietly succeeds.' },
   { n: '04', t: 'Let AI do the repetitive, careful work.',
