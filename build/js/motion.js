@@ -324,6 +324,57 @@ function initWorkHover(scope) {
 // replaced — so a controller stashed on it persists across mount() calls and
 // lets each new mount tear down the previous route's window-level listeners
 // before attaching its own.
+// ── auto-scrolling pills (per route) ─────────────────────────────────────────
+// The practice pills sit in equal-width cards, so a long label (e.g. the
+// four-domain tag on card 02) would overflow its slot. We wrap each label in a
+// two-copy .pill-run and toggle .is-scroll only on pills whose label is wider
+// than its slot at the current width — a seamless marquee via translateX(-50%).
+// Non-overflowing pills stay static; under reduced-motion the CSS wraps instead.
+function initPillMarquee(scope, signal) {
+  const pills = [...scope.querySelectorAll('.practice .pill')];
+  if (!pills.length) return;
+
+  pills.forEach((pill) => {
+    const label = pill.textContent.trim();
+    const run = document.createElement('span');
+    run.className = 'pill-run';
+    const a = document.createElement('span');
+    a.className = 'pill-seg';
+    a.textContent = label;
+    const b = a.cloneNode(true);
+    b.setAttribute('aria-hidden', 'true');
+    run.append(a, b);
+    pill.textContent = '';
+    pill.appendChild(run);
+    pill.__seg = a;
+  });
+
+  const evaluate = () => {
+    pills.forEach((pill) => {
+      const seg = pill.__seg;
+      // seg is display:inline-block; its scrollWidth is the label's intrinsic
+      // width. Compare against the pill's content box.
+      const overflow = seg.scrollWidth > pill.clientWidth + 1;
+      pill.classList.toggle('is-scroll', overflow);
+      if (overflow && !reduce) {
+        const unit = pill.__seg.offsetWidth;      // one copy incl. trailing gap
+        const dur = Math.max(6, unit / 34);        // ~34px/s, min 6s
+        pill.style.setProperty('--pill-dur', `${dur.toFixed(1)}s`);
+      } else {
+        pill.style.removeProperty('--pill-dur');
+      }
+    });
+  };
+
+  // measure after layout settles
+  requestAnimationFrame(evaluate);
+  let raf = null;
+  window.addEventListener('resize', () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => { raf = null; evaluate(); });
+  }, { passive: true, signal });
+}
+
 export function mount(scope) {
   scope.__motionAbort?.abort();
   const ac = new AbortController();
@@ -333,6 +384,7 @@ export function mount(scope) {
   initLazyMedia(scope);
   initCounters(scope);
   initMarquee(scope, ac.signal);
+  initPillMarquee(scope, ac.signal);
   initMagnetic(scope);
   initWorkHover(scope);
 }
