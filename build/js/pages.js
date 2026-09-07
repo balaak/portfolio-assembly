@@ -80,7 +80,7 @@ export function renderHome() {
     <section class="section" id="practices-sec">
       <div class="container">
         ${eyebrow('What I do')}
-        <h2 class="s-title reveal" style="margin-bottom:56px">Four practices, one operating system.</h2>
+        <h2 class="s-title reveal" style="margin-bottom:56px">The four disciplines I’ve gone deep on.</h2>
         <div class="practice-grid reveal">${practices}</div>
       </div>
     </section>
