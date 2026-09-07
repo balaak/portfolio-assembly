@@ -390,14 +390,14 @@ export function renderAbout() {
           <h1 class="s-title xl reveal">Head of Product Design — design systems, payments, and AI-augmented craft.</h1>
           <p class="lede reveal">Fourteen years turning ambiguous product problems into shipped, measurable interfaces — from a one-person design function to a team of eighteen.</p>
         </div>
-        <div class="about-portrait reveal"><span class="mono">Kochi → Dubai</span></div>
+        <div class="about-portrait reveal"><span class="mono">Dubai</span></div>
       </div>
     </section>
 
     <section class="section pt0"><div class="container-narrow prose about-bio reveal">
       <p class="dropcap">I design at the seams — where a design system meets twenty-five bank brands, where a checkout meets a failing payment, where a Claude pipeline meets a designer’s afternoon of repetitive work. The common thread across fourteen years is a stubborn question: does this design actually move a number?</p>
       <p>I’ve built the design function at Hatio · BillDesk from a single hire to a peak of eighteen, founded a multi-tenant design system running at national-bank scale, and led the Payment Gateway SDK that now sits inside a super-app handling 30,000+ transactions a minute. Lately, much of my energy goes into AI-augmented design ops — compressing the careful, repetitive parts of the job from days into minutes.</p>
-      <p>I’m relocating from Kochi to Dubai and open to Head / Lead Product Design roles. If your team cares about both craft and conversion — which, in my experience, are the same problem seen from two sides — let’s talk.</p>
+      <p>I’m based in Dubai and open to Head / Lead Product Design roles, available immediately. If your team cares about both craft and conversion — which, in my experience, are the same problem seen from two sides — let’s talk.</p>
     </div></section>
 
     <section class="section bordered">
@@ -433,7 +433,7 @@ export function renderContact() {
       <div class="container">
         ${eyebrow('Contact · Open to Dubai roles')}
         <h1 class="s-title xl reveal">Let’s talk about the role.</h1>
-        <p class="lede reveal">I’m relocating to Dubai and open to Head / Lead Product Design positions. Tell me about the team, the product, and the number you’re trying to move.</p>
+        <p class="lede reveal">I’m based in Dubai and available immediately for Head / Lead Product Design positions. Tell me about the team, the product, and the number you’re trying to move.</p>
       </div>
     </section>
     <section class="section pt0"><div class="container contact-grid">

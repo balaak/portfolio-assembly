@@ -12,8 +12,8 @@ export const PROFILE = {
   status: 'Open to roles · Dubai',
   email: 'balaashokan@gmail.com',
   linkedin: 'https://www.linkedin.com/in/balakumaranux',
-  location: 'Kochi → Dubai',
-  availability: 'Relocating · 2-month notice',
+  location: 'Dubai',
+  availability: 'Available immediately · Dubai',
 };
 
 export const MARQUEE = [
