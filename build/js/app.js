@@ -116,7 +116,7 @@ function swap(page) {
   scrollTop();
   setNavActive(page.route);
   document.title = page.label === 'Home'
-    ? `${PROFILE.name} — ${PROFILE.role}`
+    ? `${PROFILE.name} · ${PROFILE.role}`
     : `${page.label} · ${PROFILE.name}`;
   page.onMount(ctx);
   motion.mount(app);

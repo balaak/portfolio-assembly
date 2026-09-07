@@ -104,7 +104,7 @@ export function renderHome() {
     <section class="section bordered">
       <div class="container">
         <div class="s-head">
-          <div>${eyebrow('Selected work · 2011 — 26')}<h2 class="s-title reveal">Six projects worth talking about.</h2></div>
+          <div>${eyebrow('Selected work · 2011–26')}<h2 class="s-title reveal">Six projects worth talking about.</h2></div>
           <a href="#/work" class="link-arrow reveal">All projects (${PROJECTS.length}) →</a>
         </div>
         <div class="work-grid">${work}</div>
@@ -167,9 +167,9 @@ export function renderWork() {
   const html = `
     <section class="section page-head">
       <div class="container">
-        ${eyebrow('Work archive · 2011 — 26')}
-        <h1 class="s-title xl reveal">Selected work — six I can show you in detail.</h1>
-        <p class="lede reveal">Each one walks through the problem, the process, and the outcome — with the numbers, the dead ends, and the design decisions that actually moved the needle.</p>
+        ${eyebrow('Work archive · 2011–26')}
+        <h1 class="s-title xl reveal">Selected work: six I can show you in detail.</h1>
+        <p class="lede reveal">Each one walks through the problem, the process, and the outcome, with the numbers, the dead ends, and the design decisions that actually moved the needle.</p>
       </div>
     </section>
     <section class="section pt0">
@@ -267,7 +267,7 @@ export function renderCase(slug) {
           <div class="hairline"></div>
           <a class="next-cta reveal" href="#/work/${next.slug}">
             <span class="mono">Next case</span>
-            <h2 class="s-title">${esc(next.name)} — ${esc(next.kind)}</h2>
+            <h2 class="s-title">${esc(next.name)} · ${esc(next.kind)}</h2>
             <span class="next-arrow">→</span>
           </a>
         </div>
@@ -309,7 +309,7 @@ export function renderBlog() {
       <div class="container">
         ${eyebrow('Writing · A working journal')}
         <h1 class="s-title xl reveal">Notes on craft, conversion, and design at scale.</h1>
-        <p class="lede reveal">Long-form notes on the parts of design that don’t fit in a Figma file — design systems, payments UX, and building with AI.</p>
+        <p class="lede reveal">Long-form notes on the parts of design that don’t fit in a Figma file: design systems, payments UX, and building with AI.</p>
       </div>
     </section>
     <section class="section pt0"><div class="container blog-feature">${feat}</div></section>
@@ -359,7 +359,7 @@ export function renderArticle(slug) {
       <div class="container-narrow prose article-prose reveal">
         ${body}
         <hr class="prose-rule" />
-        <p class="prose-footer mono">This is a working note — the full essay is on its way. Reach out on <a href="${PROFILE.linkedin}" target="_blank" rel="noopener">LinkedIn</a> if you’d like the long version early.</p>
+        <p class="prose-footer mono">This is a working note. The full essay is on its way. Reach out on <a href="${PROFILE.linkedin}" target="_blank" rel="noopener">LinkedIn</a> if you’d like the long version early.</p>
       </div>
     </article>
     <section class="section related">
@@ -387,17 +387,17 @@ export function renderAbout() {
       <div class="container about-head-grid">
         <div>
           ${eyebrow('About · Bala Kumaran')}
-          <h1 class="s-title xl reveal">Head of Product Design — design systems, payments, and AI-augmented craft.</h1>
-          <p class="lede reveal">Fourteen years turning ambiguous product problems into shipped, measurable interfaces — from a one-person design function to a team of eighteen.</p>
+          <h1 class="s-title xl reveal">Head of Product Design: design systems, payments, and AI-augmented craft.</h1>
+          <p class="lede reveal">Fourteen years turning ambiguous product problems into shipped, measurable interfaces, from a one-person design function to a team of eighteen.</p>
         </div>
         <div class="about-portrait reveal"><span class="mono">Dubai</span></div>
       </div>
     </section>
 
     <section class="section pt0"><div class="container-narrow prose about-bio reveal">
-      <p class="dropcap">I design at the seams — where a design system meets twenty-five bank brands, where a checkout meets a failing payment, where a Claude pipeline meets a designer’s afternoon of repetitive work. The common thread across fourteen years is a stubborn question: does this design actually move a number?</p>
-      <p>I’ve built the design function at Hatio · BillDesk from a single hire to a peak of eighteen, founded a multi-tenant design system running at national-bank scale, and led the Payment Gateway SDK that sits inside a super-app handling 30,000+ transactions a minute. Much of my recent work has been in AI-augmented design ops — compressing the careful, repetitive parts of the job from days into minutes.</p>
-      <p>I’m based in Dubai and open to Head / Lead Product Design roles, available immediately. If your team cares about both craft and conversion — which, in my experience, are the same problem seen from two sides — let’s talk.</p>
+      <p class="dropcap">I design at the seams, where a design system meets twenty-five bank brands, where a checkout meets a failing payment, where a Claude pipeline meets a designer’s afternoon of repetitive work. The common thread across fourteen years is a stubborn question: does this design actually move a number?</p>
+      <p>I’ve built the design function at Hatio · BillDesk from a single hire to a peak of eighteen, founded a multi-tenant design system running at national-bank scale, and led the Payment Gateway SDK that sits inside a super-app handling 30,000+ transactions a minute. Much of my recent work has been in AI-augmented design ops, compressing the careful, repetitive parts of the job from days into minutes.</p>
+      <p>I’m based in Dubai and open to Head / Lead Product Design roles, available immediately. If your team cares about both craft and conversion (which, in my experience, are the same problem seen from two sides), let’s talk.</p>
     </div></section>
 
     <section class="section bordered">
