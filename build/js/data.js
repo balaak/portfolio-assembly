@@ -14,6 +14,8 @@ export const PROFILE = {
   linkedin: 'https://www.linkedin.com/in/balakumaranux',
   location: 'Dubai',
   availability: 'Available immediately · Dubai',
+  // Drop the PDF at build/assets/ under this exact name for the hero download.
+  resumeUrl: 'assets/Bala-Kumaran-Product-Design.pdf',
 };
 
 export const MARQUEE = [

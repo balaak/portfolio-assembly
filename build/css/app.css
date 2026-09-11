@@ -181,6 +181,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
    ASCII frame, not just a calm one; sits below the glyphs (z:-1) and stays
    pointer-transparent via the parent. */
 .hero-title::before{content:"";position:absolute;z-index:-1;inset:-.45em -1.1em;background:radial-gradient(115% 135% at 26% 50%,color-mix(in oklch,var(--hero-bg) 74%,transparent) 0%,color-mix(in oklch,var(--hero-bg) 54%,transparent) 44%,transparent 78%);filter:blur(7px)}
+/* CTAs sit inside the pointer-transparent .hero-copy, so re-enable pointer
+   events on them. The accent button carries its own colour in both themes;
+   the ghost is pinned to the fixed dark hero-ink tokens so it reads on the
+   dark hero island regardless of the page theme. */
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;pointer-events:auto}
+.hero-cta .btn-ghost{border-color:oklch(1 0 0/.28);color:var(--hero-ink-2)}
+.hero-cta .btn-ghost:hover{border-color:var(--hero-ink);color:var(--hero-ink);background:oklch(1 0 0/.06)}
 @keyframes floaty{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 
 /* ═══ MARQUEE ══════════════════════════════════════════════════════════════ */
