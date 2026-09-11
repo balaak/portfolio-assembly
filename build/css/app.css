@@ -169,6 +169,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .hero-ascii-bg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,transparent 72%,var(--hero-bg) 100%)}
 .hero-cue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:2;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--hero-ink-3);animation:floaty 2.4s ease-in-out infinite}
+/* ── HERO HEADLINE — overlaid above the ASCII canvas (z:0) and the bottom fade
+   (.hero::after, z:1), below the Scroll cue (z:2). The block is centred on the
+   page grid (matches .container) and left-aligned, sitting just above centre so
+   it clears the densest lower band of the ASCII and never fights the cue/fade.
+   Colour is pinned to the fixed dark --hero-ink tokens, so it reads identically
+   in both themes (the hero is a dark island that never inverts). */
+.hero-copy{position:absolute;z-index:1;left:0;right:0;top:46%;transform:translateY(-50%);max-width:var(--max);margin-inline:auto;padding:0 var(--pad);pointer-events:none}
+.hero-title{position:relative;max-width:19ch;font-family:var(--font-sans);font-size:clamp(30px,5.2vw,58px);font-weight:500;line-height:1.06;letter-spacing:-.03em;color:var(--hero-ink);text-shadow:0 1px 2px color-mix(in oklch,var(--hero-bg) 65%,transparent),0 2px 26px color-mix(in oklch,var(--hero-bg) 80%,transparent)}
+/* Soft radial scrim rides behind the text so contrast holds over the busiest
+   ASCII frame, not just a calm one; sits below the glyphs (z:-1) and stays
+   pointer-transparent via the parent. */
+.hero-title::before{content:"";position:absolute;z-index:-1;inset:-.45em -1.1em;background:radial-gradient(115% 135% at 26% 50%,color-mix(in oklch,var(--hero-bg) 74%,transparent) 0%,color-mix(in oklch,var(--hero-bg) 54%,transparent) 44%,transparent 78%);filter:blur(7px)}
 @keyframes floaty{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 
 /* ═══ MARQUEE ══════════════════════════════════════════════════════════════ */

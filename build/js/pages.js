@@ -70,6 +70,9 @@ export function renderHome() {
   const html = `
     <section class="hero" id="hero">
       <canvas class="hero-ascii-bg" aria-hidden="true"></canvas>
+      <div class="hero-copy reveal">
+        <h1 class="hero-title">Passionately leading product design for startups and enterprises for 14+ years</h1>
+      </div>
       <div class="hero-cue">Scroll</div>
     </section>
 
