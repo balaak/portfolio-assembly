@@ -181,7 +181,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
    this element would be dropped the moment it reveals. */
 .hero-copy{position:absolute;z-index:1;left:0;right:0;bottom:14%;max-width:var(--max);margin-inline:auto;padding:0 var(--pad);pointer-events:none;text-align:center}
 @media(max-width:640px){.hero-copy{bottom:11%}}
-.hero-title{position:relative;max-width:22ch;margin-inline:auto;font-family:var(--font-sans);font-size:clamp(30px,5.2vw,58px);font-weight:500;line-height:1.06;letter-spacing:-.03em;color:var(--hero-ink);text-shadow:0 1px 2px color-mix(in oklch,var(--hero-bg) 65%,transparent),0 2px 26px color-mix(in oklch,var(--hero-bg) 80%,transparent)}
+.hero-title{position:relative;max-width:26ch;margin-inline:auto;font-family:var(--font-sans);font-size:clamp(30px,5.2vw,54px);font-weight:500;line-height:1.08;letter-spacing:-.03em;text-wrap:balance;color:var(--hero-ink);text-shadow:0 1px 2px color-mix(in oklch,var(--hero-bg) 65%,transparent),0 2px 26px color-mix(in oklch,var(--hero-bg) 80%,transparent)}
 /* Soft radial scrim rides behind the text so contrast holds over the busiest
    ASCII / photo frame, not just a calm one; sits below the glyphs (z:-1) and
    stays pointer-transparent via the parent. Centred to match the copy. */
