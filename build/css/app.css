@@ -181,7 +181,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
    this element would be dropped the moment it reveals. */
 .hero-copy{position:absolute;z-index:1;left:0;right:0;bottom:14%;max-width:var(--max);margin-inline:auto;padding:0 var(--pad);pointer-events:none;text-align:center}
 @media(max-width:640px){.hero-copy{bottom:11%}}
-.hero-title{position:relative;max-width:26ch;margin-inline:auto;font-family:var(--font-sans);font-size:clamp(30px,5.2vw,54px);font-weight:500;line-height:1.08;letter-spacing:-.03em;text-wrap:balance;color:var(--hero-ink);text-shadow:0 1px 2px color-mix(in oklch,var(--hero-bg) 65%,transparent),0 2px 26px color-mix(in oklch,var(--hero-bg) 80%,transparent)}
+/* Desktop: explicit <br class="hb"> breaks force a narrowing three-line block
+   — an inverted triangle that funnels the eye down onto the primary CTA
+   (Gestalt continuity + implied-arrow apex). max-width:none lets each line be
+   only as wide as its words, so the shape reads. */
+.hero-title{position:relative;max-width:none;margin-inline:auto;font-family:var(--font-sans);font-size:clamp(30px,4.4vw,52px);font-weight:500;line-height:1.05;letter-spacing:-.03em;text-wrap:balance;color:var(--hero-ink);text-shadow:0 1px 2px color-mix(in oklch,var(--hero-bg) 65%,transparent),0 2px 26px color-mix(in oklch,var(--hero-bg) 80%,transparent)}
+/* Below the desktop range the forced breaks would overflow narrow screens, so
+   drop them and let text-wrap:balance reflow the line naturally; the retained
+   spaces around each <br> keep the words separated once the breaks are off. */
+@media(max-width:820px){.hero-title{max-width:24ch}.hero-title br.hb{display:none}}
 /* Soft radial scrim rides behind the text so contrast holds over the busiest
    ASCII / photo frame, not just a calm one; sits below the glyphs (z:-1) and
    stays pointer-transparent via the parent. Centred to match the copy. */
