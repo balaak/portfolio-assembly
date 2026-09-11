@@ -43,7 +43,12 @@ export function renderHome() {
 
   const work = featured.map((p) => `
     <a class="work-card reveal" href="#/work/${p.slug}">
-      <div class="wc-cover" style="--c:${p.color}"><span class="wc-year">${esc(p.year)}</span><span class="wc-glyph">${p.initial}</span></div>
+      <div class="wc-cover${p.cardCover ? ' has-img' : ''}" style="--c:${p.color}">
+        <span class="wc-year">${esc(p.year)}</span>
+        ${p.cardCover
+          ? `<img class="wc-img" src="${esc(p.cardCover)}" alt="${esc(p.cardAlt || p.name)}" loading="lazy" decoding="async" />`
+          : `<span class="wc-glyph">${p.initial}</span>`}
+      </div>
       <div class="wc-meta-row"><span class="mono">${esc(p.kind)}</span><span class="mono wc-metric">${esc(p.outcome)}</span></div>
       <h3 class="wc-name">${esc(p.name)}</h3>
       <p class="wc-summary">${esc(p.summary)}</p>
