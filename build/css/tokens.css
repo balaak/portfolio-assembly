@@ -1,12 +1,18 @@
 /* ═══ FONTS (self-hosted) ═══════════════════════════════════════════════════ */
 @font-face{font-family:'Geist';src:url('../assets/fonts/geist/Geist-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
-@font-face{font-family:'Geist Mono';src:url('../assets/fonts/geist/GeistMono-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
-@font-face{font-family:'Sora';src:url('../assets/fonts/sora/sora-700.woff2') format('woff2');font-weight:700;font-display:swap}
+/* Anderson Grotesk — TEST (OTF, not yet woff2-optimised). Light/Regular/Bold/Ultrabold. */
+@font-face{font-family:'Anderson Grotesk';src:url('../assets/fonts/anderson/AndersonGrotesk-Light.otf') format('opentype');font-weight:300;font-display:swap}
+@font-face{font-family:'Anderson Grotesk';src:url('../assets/fonts/anderson/AndersonGrotesk-Regular.otf') format('opentype');font-weight:400 500;font-display:swap}
+@font-face{font-family:'Anderson Grotesk';src:url('../assets/fonts/anderson/AndersonGrotesk-Bold.otf') format('opentype');font-weight:700;font-display:swap}
+@font-face{font-family:'Anderson Grotesk';src:url('../assets/fonts/anderson/AndersonGrotesk-Ultrabold.otf') format('opentype');font-weight:800;font-display:swap}
 
 /* ═══ TOKENS (warm-dark default) ════════════════════════════════════════════ */
 :root{
   --font-sans:'Geist',-apple-system,'system-ui','Helvetica Neue',sans-serif;
-  --font-mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  /* Mono retired — the whole system is Anderson (display) + Geist (everything
+     else). Every former --font-mono element (eyebrows, pills, labels, meta)
+     now renders in Geist so there is no monospace face on the site. */
+  --font-mono:var(--font-sans);
 
   --bg:oklch(0.155 0.012 70); --bg-elevated:oklch(0.19 0.013 70);
   --surface:oklch(0.22 0.013 70); --surface-2:oklch(0.26 0.014 70);
