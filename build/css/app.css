@@ -33,8 +33,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .btn{display:inline-flex;align-items:center;gap:10px;font-size:.92rem;font-weight:500;padding:13px 22px;border-radius:var(--r-pill);border:1px solid transparent;transition:background .25s,color .25s,border-color .25s,transform .1s;will-change:transform}
 .btn-primary{background:var(--ink);color:var(--bg)}
 .btn-primary:hover{background:var(--accent);color:var(--accent-ink)}
-.btn-accent{background:var(--accent);color:var(--accent-ink)}
-.btn-accent:hover{box-shadow:0 8px 30px color-mix(in oklch,var(--accent) 40%,transparent)}
+.btn-accent{background:var(--btn-grad);color:#fff;border-color:transparent;text-shadow:0 1px 1px rgba(0,0,0,.18);box-shadow:0 8px 30px -8px color-mix(in oklch,var(--btn-grad-glow) 60%,transparent)}
+.btn-accent:hover{box-shadow:0 12px 40px -6px color-mix(in oklch,var(--btn-grad-glow) 78%,transparent);filter:brightness(1.06)}
 .btn-ghost{border-color:var(--border-strong);color:var(--ink-2)}
 .btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
 
