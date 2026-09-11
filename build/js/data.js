@@ -58,7 +58,7 @@ export const PROCESS = [
 
 export const NUMBERS = [
   { target: 14,   suffix: '+',     label: 'Years in UX' },
-  { target: 3000, suffix: '+',     label: 'Components in the system' },
+  { target: 150,  suffix: '+',     label: 'Components in the system' },
   { target: 9,    suffix: 'M+',    label: 'App downloads shipped' },
   { target: 30,   suffix: 'K/min', label: 'Live checkout throughput' },
 ];
@@ -72,11 +72,11 @@ export const PROJECTS = [
     name: 'Multi-brand design system',
     initial: 'S', color: 'var(--accent)',
     kind: 'Design system · Fintech', year: '2020–2026',
-    role: 'Founder & DS Lead', duration: '2020–2026', outcome: '3,000+ components',
+    role: 'Founder & DS Lead', duration: '2020–2026', outcome: '150+ components',
     summary: 'Founded a multi-tenant system that skins one component set across 20–25 bank brands and five platforms. Brand swaps went from 2–3 days to under 10 minutes. ~9 of 10 products migrated.',
     tags: ['Design system', 'Tokens', 'Governance', 'Multi-tenant'],
     metrics: [
-      { v: '3,000+', l: 'Components' },
+      { v: '150+', l: 'Components' },
       { v: '<10 min', l: 'Brand swap · was 2–3 days' },
       { v: '~9/10', l: 'Products migrated' },
     ],
