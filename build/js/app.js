@@ -82,6 +82,7 @@ const setDrawer = (open) => {
   drawer.classList.toggle('open', open);
   trigger.classList.toggle('is-open', open);
   document.body.style.overflow = open ? 'hidden' : '';
+  if (open) motion.rollDrawerName();
 };
 trigger?.addEventListener('click', () => setDrawer(!drawer.classList.contains('open')));
 drawer?.addEventListener('click', (e) => { if (e.target.closest('a') || e.target.classList.contains('drawer-scrim')) setDrawer(false); });
