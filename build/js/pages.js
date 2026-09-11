@@ -75,6 +75,13 @@ export function renderHome() {
   const html = `
     <section class="hero" id="hero">
       <canvas class="hero-ascii-bg" aria-hidden="true"></canvas>
+      <div class="hero-copy reveal">
+        <h1 class="hero-title">Leading product design <br class="hm">for startups <br class="hb">and <br class="hm">enterprises for <br>14+&nbsp;years.</h1>
+        <div class="hero-cta">
+          <a class="btn btn-accent" href="#/work/payment-gateway-sdk">Read case study →</a>
+          <a class="btn btn-ghost" href="${esc(PROFILE.resumeUrl)}" download>Download résumé ↓</a>
+        </div>
+      </div>
       <div class="hero-cue">Scroll</div>
     </section>
 

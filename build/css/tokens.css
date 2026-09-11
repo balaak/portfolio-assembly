@@ -1,19 +1,32 @@
 /* ═══ FONTS (self-hosted) ═══════════════════════════════════════════════════ */
 @font-face{font-family:'Geist';src:url('../assets/fonts/geist/Geist-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
-@font-face{font-family:'Geist Mono';src:url('../assets/fonts/geist/GeistMono-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
-@font-face{font-family:'Sora';src:url('../assets/fonts/sora/sora-700.woff2') format('woff2');font-weight:700;font-display:swap}
+/* Anderson Grotesk — TEST (OTF, not yet woff2-optimised). Light/Regular/Bold/Ultrabold. */
+@font-face{font-family:'Anderson Grotesk';src:url('../assets/fonts/anderson/AndersonGrotesk-Light.otf') format('opentype');font-weight:300;font-display:swap}
+@font-face{font-family:'Anderson Grotesk';src:url('../assets/fonts/anderson/AndersonGrotesk-Regular.otf') format('opentype');font-weight:400 500;font-display:swap}
+@font-face{font-family:'Anderson Grotesk';src:url('../assets/fonts/anderson/AndersonGrotesk-Bold.otf') format('opentype');font-weight:700;font-display:swap}
+@font-face{font-family:'Anderson Grotesk';src:url('../assets/fonts/anderson/AndersonGrotesk-Ultrabold.otf') format('opentype');font-weight:800;font-display:swap}
 
 /* ═══ TOKENS (warm-dark default) ════════════════════════════════════════════ */
 :root{
   --font-sans:'Geist',-apple-system,'system-ui','Helvetica Neue',sans-serif;
-  --font-mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  /* Mono retired — the whole system is Anderson (display) + Geist (everything
+     else). Every former --font-mono element (eyebrows, pills, labels, meta)
+     now renders in Geist so there is no monospace face on the site. */
+  --font-mono:var(--font-sans);
 
   --bg:oklch(0.155 0.012 70); --bg-elevated:oklch(0.19 0.013 70);
   --surface:oklch(0.22 0.013 70); --surface-2:oklch(0.26 0.014 70);
   --border:oklch(0.30 0.015 70); --border-strong:oklch(0.42 0.018 72);
   --ink:oklch(0.96 0.015 90); --ink-2:oklch(0.82 0.014 85);
   --ink-3:oklch(0.66 0.013 80); --ink-muted:oklch(0.52 0.012 75);
-  --accent:oklch(0.86 0.19 95); --accent-ink:oklch(0.18 0.04 90);
+  /* PRIMARY = purple (was yellow/gold). One token drives every accent: dots,
+     progress bars, metric numbers, focus rings, nav underline, etc. */
+  --accent:oklch(0.62 0.23 293); --accent-ink:oklch(0.99 0 0);
+  /* Primary-CTA gradient — violet, vertical (top→bottom), only a hint of pink.
+     Brighter stops than the first pass so it reads luminous, not dim, on the
+     near-black hero. Same in both themes. */
+  --btn-grad:linear-gradient(180deg,#9E7BFF 0%,#8455F6 55%,#9553E4 100%);
+  --btn-grad-glow:oklch(0.64 0.25 293);
   --tomato:oklch(0.70 0.20 32); --orange:oklch(0.76 0.17 62);
   --sage:oklch(0.72 0.13 150); --violet:oklch(0.66 0.19 290); --cobalt:oklch(0.70 0.15 245);
 
@@ -48,7 +61,7 @@
   --border:oklch(0.84 0.035 82); --border-strong:oklch(0.72 0.04 78);
   --ink:oklch(0.18 0.012 60); --ink-2:oklch(0.34 0.012 60);
   --ink-3:oklch(0.52 0.014 65); --ink-muted:oklch(0.60 0.014 70);
-  --accent:oklch(0.88 0.18 95); --accent-ink:oklch(0.22 0.05 90);
+  --accent:oklch(0.55 0.24 293); --accent-ink:oklch(0.99 0 0);
   --chip-ink:oklch(0.38 0.12 150); --chip-dot:oklch(0.55 0.16 150);
   --chip-tint:24%; --chip-base:color-mix(in oklch,var(--bg) 92%,transparent);
   --nav-glass:color-mix(in oklch,var(--bg) 66%,transparent);

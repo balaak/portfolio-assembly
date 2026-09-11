@@ -33,8 +33,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .btn{display:inline-flex;align-items:center;gap:10px;font-size:.92rem;font-weight:500;padding:13px 22px;border-radius:var(--r-pill);border:1px solid transparent;transition:background .25s,color .25s,border-color .25s,transform .1s;will-change:transform}
 .btn-primary{background:var(--ink);color:var(--bg)}
 .btn-primary:hover{background:var(--accent);color:var(--accent-ink)}
-.btn-accent{background:var(--accent);color:var(--accent-ink)}
-.btn-accent:hover{box-shadow:0 8px 30px color-mix(in oklch,var(--accent) 40%,transparent)}
+/* Oversized background so the vertical gradient can drift on hover. */
+.btn-accent{background:var(--btn-grad);background-size:100% 220%;background-position:50% 0%;color:#fff;border-color:transparent;box-shadow:0 10px 34px -8px color-mix(in oklch,var(--btn-grad-glow) 72%,transparent);transition:background .25s,color .25s,border-color .25s,transform .1s,box-shadow .3s}
+.btn-accent:hover{box-shadow:0 14px 46px -6px color-mix(in oklch,var(--btn-grad-glow) 88%,transparent);animation:cta-flow 2.6s ease-in-out infinite alternate}
+@keyframes cta-flow{from{background-position:50% 0%}to{background-position:50% 100%}}
 .btn-ghost{border-color:var(--border-strong);color:var(--ink-2)}
 .btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
 
@@ -171,6 +173,47 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .hero-ascii-bg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,transparent 72%,var(--hero-bg) 100%)}
 .hero-cue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:2;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--hero-ink-3);animation:floaty 2.4s ease-in-out infinite}
+/* ── HERO HEADLINE — overlaid above the ASCII canvas (z:0) and the bottom fade
+   (.hero::after, z:1), below the Scroll cue (z:2). The block is centred on the
+   page grid (matches .container) and left-aligned, sitting just above centre so
+   it clears the densest lower band of the ASCII and never fights the cue/fade.
+   Colour is pinned to the fixed dark --hero-ink tokens, so it reads identically
+   in both themes (the hero is a dark island that never inverts). */
+/* Anchored from the BOTTOM (not vertically centred) so the upper-centre of
+   the hero portrait stays visible above the copy. No transform here — the
+   .reveal.in rule owns transform (translateY rise-in), so a translate set on
+   this element would be dropped the moment it reveals. */
+.hero-copy{position:absolute;z-index:1;left:0;right:0;bottom:14%;max-width:var(--max);margin-inline:auto;padding:0 var(--pad);pointer-events:none;text-align:center}
+@media(max-width:640px){.hero-copy{bottom:11%}}
+/* Desktop: explicit <br class="hb"> breaks force a narrowing three-line block
+   — an inverted triangle that funnels the eye down onto the primary CTA
+   (Gestalt continuity + implied-arrow apex). max-width:none lets each line be
+   only as wide as its words, so the shape reads. */
+.hero-title{position:relative;max-width:none;margin-inline:auto;font-family:'Anderson Grotesk',var(--font-sans);font-size:clamp(32px,4.6vw,60px);font-weight:700;line-height:.98;letter-spacing:-.04em;color:var(--hero-ink);text-shadow:0 1px 2px color-mix(in oklch,var(--hero-bg) 65%,transparent),0 2px 26px color-mix(in oklch,var(--hero-bg) 80%,transparent)}
+/* Two break systems drive the inverted triangle at BOTH breakpoints:
+   hb = desktop-only breaks (line 1 "…for startups" is too wide for phones),
+   hm = mobile-only breaks (shorter phrases that still narrow), and the one
+   unclassed <br> before "14+ years." fires in both. Default = desktop:
+   show hb (+ permanent), hide hm. */
+.hero-title br.hm{display:none}
+/* Below the desktop range the forced breaks would overflow narrow screens, so
+   drop them and let text-wrap:balance reflow the line naturally; the retained
+   spaces around each <br> keep the words separated once the breaks are off. */
+/* Mobile: swap to the mobile break set so the triangle survives on phones. */
+@media(max-width:820px){.hero-title br.hb{display:none}.hero-title br.hm{display:inline}}
+/* Soft radial scrim rides behind the text so contrast holds over the busiest
+   ASCII / photo frame, not just a calm one; sits below the glyphs (z:-1) and
+   stays pointer-transparent via the parent. Centred to match the copy. */
+.hero-title::before{content:"";position:absolute;z-index:-1;inset:-.45em -1.1em;background:radial-gradient(120% 140% at 50% 50%,color-mix(in oklch,var(--hero-bg) 74%,transparent) 0%,color-mix(in oklch,var(--hero-bg) 52%,transparent) 46%,transparent 78%);filter:blur(7px)}
+/* CTAs sit inside the pointer-transparent .hero-copy, so re-enable pointer
+   events on them. The accent button carries its own colour in both themes;
+   the ghost is pinned to the fixed dark hero-ink tokens so it reads on the
+   dark hero island regardless of the page theme. */
+.hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:34px;pointer-events:auto}
+/* Ghost matched to the purple primary: a violet-tinted hairline that warms to
+   a soft violet wash on hover, so the two CTAs read as one set. */
+.hero-cta .btn-ghost{border-color:color-mix(in oklch,var(--accent) 52%,transparent);color:var(--hero-ink-2)}
+.hero-cta .btn-ghost:hover{border-color:color-mix(in oklch,var(--accent) 85%,transparent);color:var(--hero-ink);background:color-mix(in oklch,var(--accent) 14%,transparent)}
 @keyframes floaty{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 
 /* ═══ MARQUEE ══════════════════════════════════════════════════════════════ */
