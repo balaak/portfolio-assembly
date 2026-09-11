@@ -532,6 +532,10 @@ footer{border-top:1px solid var(--border);padding:clamp(56px,8vw,96px) 0 40px;ma
 @supports (transition-timing-function:linear(0,1)){.brand-name .roll-i{transition-timing-function:var(--ease-roll)}}
 .brand-name .roll-i>span{display:block;height:1em;line-height:1}
 .brand-name:hover .roll-i,.brand:focus-visible .roll-i{transform:translate3d(0,var(--to),0);will-change:transform}
+/* drawer-open state, set by motion.js — and hover keeps working from it,
+   rolling back toward the resting glyph instead of sitting still */
+.brand-name.rolled .roll-i{transform:translate3d(0,var(--to),0);will-change:transform}
+.brand-name.rolled:hover .roll-i{transform:translate3d(0,-2em,0)}
 @media(prefers-reduced-motion:reduce){.brand-name .roll-i{transition:none}}
 
 /* ═══ REVEAL ═══════════════════════════════════════════════════════════════ */
