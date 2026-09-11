@@ -42,18 +42,18 @@ export const PRACTICES = [
 ];
 
 export const PROCESS = [
-  { n: '01', name: 'Diagnose', week: 'Week 0–1',
-    d: 'Analytics teardown, session recordings, and a hypothesis backlog. We agree on the number we’re moving before any pixels move.',
-    tags: ['Audit', 'Hypotheses'] },
-  { n: '02', name: 'Design', week: 'Week 1–3',
-    d: 'Hi-fi flows in Figma and Framer, motion included. Real copy, real data, testable with real users by Friday.',
-    tags: ['Figma', 'Framer', 'Motion'] },
-  { n: '03', name: 'Systematize', week: 'Week 3–5',
-    d: 'Tokens, components, and governance so the work survives me. Dev-ready handoff, semantic theming, states beyond the happy path.',
-    tags: ['Tokens', 'Storybook', 'Governance'] },
-  { n: '04', name: 'Ship & measure', week: 'Week 5–6',
-    d: 'Accessibility pass, A/B in production, and the honest read afterward. The number either moved or it didn’t.',
-    tags: ['A11y', 'A/B test'] },
+  { n: '01', name: 'Set the bet', label: 'Strategy',
+    d: 'Design and the business agree on the number we’re moving before work starts. No pixels until we know what we’re betting on.',
+    tags: ['Strategy', 'Stakeholders'] },
+  { n: '02', name: 'Build the team and the system', label: 'People & systems',
+    d: 'I grew the design function from one to eighteen, then to a lean five-person senior core. I founded a multi-tenant design system that became org leverage, not a library: 150+ components skinning 20 to 25 bank brands, governed hub-and-spoke on a two-hour SLA.',
+    tags: ['1 → 18', 'Design system'] },
+  { n: '03', name: 'Move faster with AI-augmented ops', label: 'Modern edge',
+    d: 'Pipelines I built compress the repetitive work from days to minutes. A brand swap that took two to three days now takes under ten, so the team spends its time on judgment.',
+    tags: ['AI ops', 'Days → minutes'] },
+  { n: '04', name: 'Measure honestly', label: 'Accountability',
+    d: 'Ship, A/B in production, take the honest read. The number moved or it didn’t.',
+    tags: ['A/B in prod', 'Accountability'] },
 ];
 
 export const NUMBERS = [
