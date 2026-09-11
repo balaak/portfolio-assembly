@@ -19,11 +19,14 @@
   --border:oklch(0.30 0.015 70); --border-strong:oklch(0.42 0.018 72);
   --ink:oklch(0.96 0.015 90); --ink-2:oklch(0.82 0.014 85);
   --ink-3:oklch(0.66 0.013 80); --ink-muted:oklch(0.52 0.012 75);
-  --accent:oklch(0.86 0.19 95); --accent-ink:oklch(0.18 0.04 90);
-  /* Primary-CTA gradient — violet → pink (per Bala's reference). Same in both
-     themes: it needs to pop on the dark hero and the light contact page alike. */
-  --btn-grad:linear-gradient(135deg,#6C3CF0 0%,#8A44EC 52%,#C64BB0 100%);
-  --btn-grad-glow:oklch(0.55 0.24 292);
+  /* PRIMARY = purple (was yellow/gold). One token drives every accent: dots,
+     progress bars, metric numbers, focus rings, nav underline, etc. */
+  --accent:oklch(0.62 0.23 293); --accent-ink:oklch(0.99 0 0);
+  /* Primary-CTA gradient — violet, vertical (top→bottom), only a hint of pink.
+     Brighter stops than the first pass so it reads luminous, not dim, on the
+     near-black hero. Same in both themes. */
+  --btn-grad:linear-gradient(180deg,#9E7BFF 0%,#8455F6 55%,#9553E4 100%);
+  --btn-grad-glow:oklch(0.64 0.25 293);
   --tomato:oklch(0.70 0.20 32); --orange:oklch(0.76 0.17 62);
   --sage:oklch(0.72 0.13 150); --violet:oklch(0.66 0.19 290); --cobalt:oklch(0.70 0.15 245);
 
@@ -58,7 +61,7 @@
   --border:oklch(0.84 0.035 82); --border-strong:oklch(0.72 0.04 78);
   --ink:oklch(0.18 0.012 60); --ink-2:oklch(0.34 0.012 60);
   --ink-3:oklch(0.52 0.014 65); --ink-muted:oklch(0.60 0.014 70);
-  --accent:oklch(0.88 0.18 95); --accent-ink:oklch(0.22 0.05 90);
+  --accent:oklch(0.55 0.24 293); --accent-ink:oklch(0.99 0 0);
   --chip-ink:oklch(0.38 0.12 150); --chip-dot:oklch(0.55 0.16 150);
   --chip-tint:24%; --chip-base:color-mix(in oklch,var(--bg) 92%,transparent);
   --nav-glass:color-mix(in oklch,var(--bg) 66%,transparent);
