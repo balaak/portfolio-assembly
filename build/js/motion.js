@@ -201,8 +201,21 @@ const ROLL_REST = 2;                                     // index of the resting
 const ROLL_DELAYS = [1, 3, 25, 0, 105, 105, 10, 3, 3, 12, 124];
 
 export function bootBrandRoll() {
-  if (reduce || !finePointer) return;
+  if (reduce) return;
+  // split on coarse pointers too: the drawer name is fired by the drawer
+  // opening rather than by hover, so a phone needs the stacks built
   document.querySelectorAll('.brand-name').forEach(splitName);
+}
+
+// Fires the drawer wordmark when the panel opens, since a phone has no hover to
+// trigger it. Each open flips the stacks between the resting glyph and the one
+// two rows out, so consecutive opens roll opposite ways and nothing has to be
+// reset in between -- every stop is the same glyph. That mirror-cycle is what
+// the Framer original does between hover-enter and hover-leave.
+export function rollDrawerName() {
+  if (reduce) return;
+  const name = document.querySelector('.drawer .brand-name');
+  if (name) name.classList.toggle('rolled');
 }
 
 function splitName(name) {
