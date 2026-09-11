@@ -36,7 +36,7 @@ export function renderHome() {
 
   const steps = PROCESS.map((s) => `
     <div class="step" data-step="${+s.n}" data-name="${esc(s.name)}">
-      <div class="step-top"><span class="idx">${s.n} / 04</span><span class="pill">${esc(s.week)}</span></div>
+      <div class="step-top"><span class="idx">${s.n} / 04</span><span class="pill">${esc(s.label)}</span></div>
       <h3>${esc(s.name)}</h3><p>${esc(s.d)}</p>
       <div class="step-tags">${chips(s.tags)}</div>
     </div>`).join('');
@@ -88,13 +88,13 @@ export function renderHome() {
     <section class="section bordered">
       <div class="container">
         ${eyebrow('Process')}
-        <h2 class="s-title reveal" style="margin-bottom:64px">Six weeks, four moves, one number.</h2>
+        <h2 class="s-title reveal" style="margin-bottom:64px">How I run design.</h2>
         <div class="process-grid">
           <aside class="process-card" id="proc-card">
-            <div class="k">Step</div>
+            <div class="k">Principle</div>
             <div class="num"><span id="proc-num">01</span><small> / 04</small></div>
             <div class="process-bar"><i id="proc-bar"></i></div>
-            <div class="now" id="proc-now">Diagnose</div>
+            <div class="now" id="proc-now">Set the bet</div>
           </aside>
           <div class="steps" id="steps">${steps}</div>
         </div>
