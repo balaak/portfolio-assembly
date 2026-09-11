@@ -75,6 +75,8 @@ export const PROJECTS = [
     role: 'Founder & DS Lead', duration: '2020–2026', outcome: '150+ components',
     summary: 'Founded a multi-tenant system that skins one component set across 20–25 bank brands and five platforms. Brand swaps went from 2–3 days to under 10 minutes. ~9 of 10 products migrated.',
     tags: ['Design system', 'Tokens', 'Governance', 'Multi-tenant'],
+    cardCover: 'media/covers/design-system-cover.webp',
+    cardAlt: 'The BillDesk UI component library cover sheet',
     metrics: [
       { v: '150+', l: 'Components' },
       { v: '<10 min', l: 'Brand swap · was 2–3 days' },
@@ -95,6 +97,8 @@ export const PROJECTS = [
     outcome: '30,000+ txns / min',
     summary: 'A pre-built payment screen merchants embed in their own app and brand as their own. I led the rebuild across five platforms for three years. It now runs at 30,000+ transactions a minute.',
     tags: ['Checkout', 'Design system', 'Accessibility', '5 platforms'],
+    cardCover: 'media/covers/payment-sdk-cover.webp',
+    cardAlt: 'The BillDesk checkout open on a phone held in both hands',
     cover: 'media/pg-sdk/hero-reel.mp4',
     thumb: 'media/pg-sdk/billdesk-ui-thumbnail.webp',
     metrics: [
